@@ -41,73 +41,39 @@
     </div>
     <!-- Spinner End -->
 
-
-    <!-- Topbar Start -->
-    <div class="container-fluid bg-dark px-5 d-none d-lg-block">
-        <div class="row gx-0">
-            <div class="col-lg-8 text-center text-lg-start mb-2 mb-lg-0">
-                <div class="d-inline-flex align-items-center" style="height: 45px;">
-                    <small class="me-3 text-light"><i class="fa fa-map-marker-alt me-2"></i>123 Street, New York, USA</small>
-                    <small class="me-3 text-light"><i class="fa fa-phone-alt me-2"></i>+012 345 6789</small>
-                    <small class="text-light"><i class="fa fa-envelope-open me-2"></i>info@example.com</small>
-                </div>
-            </div>
-            <div class="col-lg-4 text-center text-lg-end">
-                <div class="d-inline-flex align-items-center" style="height: 45px;">
-                    <a class="btn btn-sm btn-outline-light btn-sm-square rounded-circle me-2" href=""><i class="fab fa-twitter fw-normal"></i></a>
-                    <a class="btn btn-sm btn-outline-light btn-sm-square rounded-circle me-2" href=""><i class="fab fa-facebook-f fw-normal"></i></a>
-                    <a class="btn btn-sm btn-outline-light btn-sm-square rounded-circle me-2" href=""><i class="fab fa-linkedin-in fw-normal"></i></a>
-                    <a class="btn btn-sm btn-outline-light btn-sm-square rounded-circle me-2" href=""><i class="fab fa-instagram fw-normal"></i></a>
-                    <a class="btn btn-sm btn-outline-light btn-sm-square rounded-circle" href=""><i class="fab fa-youtube fw-normal"></i></a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Topbar End -->
-
-
        <!-- Navbar & Hero Start -->
        <div class="container-fluid position-relative p-0">
-        <nav class="navbar navbar-expand-lg navbar-light px-4 px-lg-5 py-3 py-lg-0">
+        <nav class="sticky navbar navbar-expand-lg navbar-light px-4 px-lg-5 py-3 py-lg-0">
             <a href="" class="navbar-brand p-0">
-                <h1 class="text-primary m-0"><i class="fa fa-map-marker-alt me-3"></i>BookEase</h1>
+                <h1 class="heading m-0 green"><i class="fa fa-map-marker-alt me-3"></i>BookEase</h1>
                 <!-- <img src="img/logo.png" alt="Logo"> -->
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <button class="navbar-toggler main-btn" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                 <span class="fa fa-bars"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav ms-auto py-0">
                     <a href="/" class="nav-item nav-link">Home</a>
-                    <a href="/about" class="nav-item nav-link">About</a>
-                    <a href="/services" class="nav-item nav-link">Services</a>
-                    <a href="/package" class="nav-item nav-link">Packages</a>
-                    <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
-                        <div class="dropdown-menu m-0">
-                            <a href="/destination" class="dropdown-item">Destination</a>
-                            <a href="/booking" class="dropdown-item">Booking</a>
-                            <a href="/team" class="dropdown-item">Travel Guides</a>
-                            <a href="/testimonial" class="dropdown-item">Testimonial</a>
-                            <a href="/404" class="dropdown-item">404 Page</a>
-                        </div>
-                    </div>
-                    <a href="/contact" class="nav-item nav-link active">Contact</a>
+                    <a href="/account" class="nav-item nav-link">Account</a>
+                    <a href="/spa" class="nav-item nav-link">Spa</a>
+                    <a href="/resorts" class="nav-item nav-link">Resort</a>
+                    <a href="/apartments" class="nav-item nav-link active">Apartment</a>
                 </div>
-                <a href="" class="btn btn-primary rounded-pill py-2 px-4">Register</a>
+                <a href="/login" class="btn btn-sm main-btn px-4 border-end login">Login</a>
+                <a href="/register" class="btn btn-sm main-btn px-3 border-end register">Register</a>
             </div>
         </nav>
 
-        <div class="container-fluid bg-primary py-5 mb-5 hero-header">
+        <div class="container-fluid bg-primary py-5 mb-5 hero-header cover">
             <div class="container py-5">
                 <div class="row justify-content-center py-5">
                     <div class="col-lg-10 pt-lg-5 mt-lg-5 text-center">
-                        <h1 class="display-3 text-white animated slideInDown">Contact</h1>
+                        <h1 class="display-3 text-white animated slideInDown">Squares Beach Front Apartments</h1>
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb justify-content-center">
                                 <li class="breadcrumb-item"><a href="#">Home</a></li>
                                 <li class="breadcrumb-item"><a href="#">Pages</a></li>
-                                <li class="breadcrumb-item text-white active" aria-current="page">Contact</li>
+                                <li class="breadcrumb-item text-white active" aria-current="page">Apartment</li>
                             </ol>
                         </nav>
                     </div>
@@ -117,89 +83,126 @@
     </div>
     <!-- Navbar & Hero End -->
 
-
-    <!-- Contact Start -->
+    <!-- Rooms Start -->
     <div class="container-xxl py-5">
         <div class="container">
             <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-                <h6 class="section-title bg-white text-center text-primary px-3">Contact Us</h6>
-                <h1 class="mb-5">Contact For Any Query</h1>
+                <h6 class="section-title bg-white text-center text-primary px-3">Apartments</h6>
+                <h1 class="mb-5">Rooms for Bookings</h1>
             </div>
-            <div class="row g-4">
+            <div class="row g-4 justify-content-center">
                 <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                    <h5>Get In Touch</h5>
-                    <p class="mb-4">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos</p>
-                    <div class="d-flex align-items-center mb-4">
-                        <div class="d-flex align-items-center justify-content-center flex-shrink-0 bg-primary" style="width: 50px; height: 50px;">
-                            <i class="fa fa-map-marker-alt text-white"></i>
+                    <div class="package-item">
+                        <div class="overflow-hidden">
+                            <img class="img-fluid" src="public/img/package-1.jpg" alt="">
                         </div>
-                        <div class="ms-3">
-                            <h5 class="text-primary">Office</h5>
-                            <p class="mb-0">123 Street, New York, USA</p>
-                        </div>
-                    </div>
-                    <div class="d-flex align-items-center mb-4">
-                        <div class="d-flex align-items-center justify-content-center flex-shrink-0 bg-primary" style="width: 50px; height: 50px;">
-                            <i class="fa fa-phone-alt text-white"></i>
-                        </div>
-                        <div class="ms-3">
-                            <h5 class="text-primary">Mobile</h5>
-                            <p class="mb-0">+012 345 67890</p>
-                        </div>
-                    </div>
-                    <div class="d-flex align-items-center">
-                        <div class="d-flex align-items-center justify-content-center flex-shrink-0 bg-primary" style="width: 50px; height: 50px;">
-                            <i class="fa fa-envelope-open text-white"></i>
-                        </div>
-                        <div class="ms-3">
-                            <h5 class="text-primary">Email</h5>
-                            <p class="mb-0">info@example.com</p>
+                        <div class="text-center p-4">
+                            <h3 class="mb-0">Room Name</h3>
+                            <hr>
+                            <p><h6 class="nobr">Room Number: </h6>Room1</p>
+                            <p><h6 class="nobr">Description: </h6>details here</p>
+                            <p><h6 class="nobr">Price: </h6>PHP 1,200</p>
+                            <p><h6 class="nobr">Availability: </h6>Available</p>
+                            <div class="d-flex justify-content-center mb-2">
+                                <a href="#" class="btn btn-sm btn-primary px-3 border-end" style="border-radius: 30px 0 0 30px;">Read More</a>
+                                <a href="#" class="btn btn-sm btn-primary px-3" style="border-radius: 0 30px 30px 0;">Book Now</a>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                    <iframe class="position-relative rounded w-100 h-100"
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3001156.4288297426!2d-78.01371936852176!3d42.72876761954724!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4ccc4bf0f123a5a9%3A0xddcfc6c1de189567!2sNew%20York%2C%20USA!5e0!3m2!1sen!2sbd!4v1603794290143!5m2!1sen!2sbd"
-                        frameborder="0" style="min-height: 300px; border:0;" allowfullscreen="" aria-hidden="false"
-                        tabindex="0"></iframe>
-                </div>
-                <div class="col-lg-4 col-md-12 wow fadeInUp" data-wow-delay="0.5s">
-                    <form>
-                        <div class="row g-3">
-                            <div class="col-md-6">
-                                <div class="form-floating">
-                                    <input type="text" class="form-control" id="name" placeholder="Your Name">
-                                    <label for="name">Your Name</label>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-floating">
-                                    <input type="email" class="form-control" id="email" placeholder="Your Email">
-                                    <label for="email">Your Email</label>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="form-floating">
-                                    <input type="text" class="form-control" id="subject" placeholder="Subject">
-                                    <label for="subject">Subject</label>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="form-floating">
-                                    <textarea class="form-control" placeholder="Leave a message here" id="message" style="height: 100px"></textarea>
-                                    <label for="message">Message</label>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <button class="btn btn-primary w-100 py-3" type="submit">Send Message</button>
+                    <div class="package-item">
+                        <div class="overflow-hidden">
+                            <img class="img-fluid" src="public/img/package-2.jpg" alt="">
+                        </div>
+                        <div class="text-center p-4">
+                            <h3 class="mb-0">Room Name</h3>
+                            <hr>
+                            <p><h6 class="nobr">Room Number: </h6>Room1</p>
+                            <p><h6 class="nobr">Description: </h6>details here</p>
+                            <p><h6 class="nobr">Price: </h6>PHP 1,200</p>
+                            <p><h6 class="nobr">Availability: </h6>Available</p>
+                            <div class="d-flex justify-content-center mb-2">
+                                <a href="#" class="btn btn-sm btn-primary px-3 border-end" style="border-radius: 30px 0 0 30px;">Read More</a>
+                                <a href="#" class="btn btn-sm btn-primary px-3" style="border-radius: 0 30px 30px 0;">Book Now</a>
                             </div>
                         </div>
-                    </form>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+                    <div class="package-item">
+                        <div class="overflow-hidden">
+                            <img class="img-fluid" src="public/img/package-3.jpg" alt="">
+                        </div>
+                        <div class="text-center p-4">
+                            <h3 class="mb-0">Room Name</h3>
+                            <hr>
+                            <p><h6 class="nobr">Room Number: </h6>Room1</p>
+                            <p><h6 class="nobr">Description: </h6>details here</p>
+                            <p><h6 class="nobr">Price: </h6>PHP 1,200</p>
+                            <p><h6 class="nobr">Availability: </h6>Available</p>
+                            <div class="d-flex justify-content-center mb-2">
+                                <a href="#" class="btn btn-sm btn-primary px-3 border-end" style="border-radius: 30px 0 0 30px;">Read More</a>
+                                <a href="#" class="btn btn-sm btn-primary px-3" style="border-radius: 0 30px 30px 0;">Book Now</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Contact End -->
+    <!-- Rooms End -->
+
+         <!-- Booking Start -->
+         <div class="back">
+        <div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
+        <div class="container">
+            <div>
+                <form>
+                <div class="row g-5 align-items-center">
+                    <div class="col-md-6 text-white" id="classy2">
+                        <div class="row g-3">
+                            <h1 class="text-white mb-4 text-center" id="classy">Booking Details</h1><br>
+                            <h4 class="text-white mb-4 text-center" id="classy2">Room: <span class="green" id="classy2">Room1</span></h4>
+                            <h4 class="text-white mb-4 text-center" id="classy2">Description: <span class="green" id="classy2">Sample Description</span></h4>
+                            <h4 class="text-white mb-4 text-center" id="classy2">Price: <span class="green" id="classy2">Price</span></h4>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <h2 class="text-white mb-4 text-center" id="classy">Enter Details</h2>
+                            <div class="row g-3">
+                                <div class="col-md-12"  id="color">
+                                    <div class="form-floating">
+                                        <input type="tel" maxlength="50" class="form-control bg-transparent" id="guest" placeholder="Number of Guest" required>
+                                        <label for="guest">Number of Guest</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12" id="color">
+                                    <div class="form-floating">
+                                        <input type="datetime-local" class="form-control bg-transparent" id="date" placeholder="Date Schedule" required>
+                                        <label for="date">Date Schedule</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12" id="color">
+                                    <div class="form-floating">
+                                        <input type="text" class="form-control bg-transparent" id="instructions" placeholder="Specisl Instructions" required>
+                                        <label for="instructions">Special Instructions</label>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <button class="btn btn-outline-light w-100 py-3" type="submit">Book Now</button>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+            </form>
+            </div>
+        </div>
+    </div>
+    </div>
+    <!-- Booking End -->
 
     <!-- Footer Start -->
     <div class="container-fluid bg-dark text-light footer pt-5 mt-5 wow fadeIn" data-wow-delay="0.1s">

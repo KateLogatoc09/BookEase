@@ -1,7 +1,7 @@
 /********** Template CSS **********/
 :root {
     --primary: #86B817;
-    --secondary: #FE8800;
+    --secondary: red;
     --light: #F5F5F5;
     --dark: #14141F;
 }
@@ -92,12 +92,12 @@
 
 .sticky-top.navbar-light .navbar-nav .nav-link {
     padding: 20px 0;
-    color: var(--dark) !important;
+    color: white !important;
 }
 
 .navbar-light .navbar-nav .nav-link:hover,
 .navbar-light .navbar-nav .nav-link.active {
-    color: var(--primary) !important;
+    color: var(--secondary) !important;
 }
 
 .navbar-light .navbar-brand img {
@@ -124,7 +124,7 @@
     .sticky-top.navbar-light .navbar-nav .nav-link {
         padding: 10px 0;
         margin-left: 0;
-        color: var(--dark) !important;
+        color: white !important;
     }
 
     .navbar-light .navbar-brand img {
@@ -144,7 +144,7 @@
     
     .sticky-top.navbar-light {
         position: fixed;
-        background: #FFFFFF;
+        background: var(--primary);
     }
 
     .navbar-light .navbar-nav .nav-link::before {
@@ -162,6 +162,7 @@
     .navbar-light .navbar-nav .nav-link.active::before {
         width: calc(100% - 2px);
         left: 1px;
+        background-color: var(--secondary) !important;
     }
 
     .navbar-light .navbar-nav .nav-link.nav-contact::before {
@@ -324,10 +325,17 @@
     z-index: 1;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 360px) {
     .testimonial-carousel::before,
     .testimonial-carousel::after {
         width: 200px;
+    }
+    .back{
+        margin-bottom: -48px;
+        margin-top: 60px;
+    }
+    .center{
+        margin-left: 100px;
     }
 }
 
@@ -335,6 +343,12 @@
     .testimonial-carousel::before,
     .testimonial-carousel::after {
         width: 300px;
+    }
+    .back{
+        margin-top: 98px;
+    }
+    .center{
+        margin-left: 280px;
     }
 }
 
@@ -440,4 +454,81 @@
     margin-right: 0;
     padding-right: 0;
     border-right: none;
+}
+
+.login {
+    border-radius: 30px 0 0 30px !important;
+}
+
+.register {
+    border-radius: 0 30px 30px 0 !important;
+}
+
+.main-btn {
+    background-color: var(--secondary) !important;
+    color: white !important;
+    font-weight: 600;
+    transition: .5s;
+}
+
+.back{
+    background: linear-gradient(rgba(15, 23, 43, .7), rgba(15, 23, 43, .7)), url(../img/booking.jpg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#classy{
+    text-align: center;
+}
+
+#classy2{
+    text-align: left !important;
+}
+
+.green{
+    color: var(--primary) !important;
+}
+
+#color{
+    color:gainsboro !important;
+}
+
+.white{
+    color: white !important;
+}
+
+#space{
+    margin-left: 40px;
+}
+
+#space2{
+    margin-top: 25px;
+}
+
+.sticky{
+    position: fixed !important;
+    top: 0;
+    background-color: var(--primary);
+    width: 100%;
+    z-index: 100000;
+}
+
+.cover {
+    margin-top: 6rem;
+}
+
+.heading {
+    color: white !important;
+}
+
+.navbar-light .navbar-nav .nav-link {
+    font-family: 'Nunito', sans-serif;
+    position: relative;
+    margin-right: 25px;
+    color: white !important;
+    font-size: 18px;
+    font-weight: 600;
+    outline: none;
+    transition: .5s;
 }

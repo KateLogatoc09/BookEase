@@ -5,17 +5,26 @@ class Main extends Controller {
 	public function index() {
 		$this->call->view('homepage');
 	}
-    public function about(){
-        $this->call->view('about');
+    public function account(){
+        $this->call->view('account');
     }
-    public function services(){
-        $this->call->view('services');
+    public function apartments(){
+        $this->call->view('apartments');
     }
-    public function package(){
-        $this->call->view('package');
+    public function resorts(){
+        $this->call->view('resorts');
     }
-    public function contact(){
-        $this->call->view('contact');
+    public function spa(){
+        $this->call->view('spa');
+    }
+    public function admin(){
+        $this->call->view('admin');
+    }
+    public function register(){
+        $this->call->view('register');
+    }
+    public function login(){
+        $this->call->view('login');
     }
 }
 ?>
