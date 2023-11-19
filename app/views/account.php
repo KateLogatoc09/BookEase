@@ -132,7 +132,7 @@
                         </div>
                         <div class="ms-3">
                             <h6 class="green">Address</h6>
-                            <h6><Address></Address></h6>
+                            <h6>Address</h6>
                         </div>
                     </div>
                     <div class="d-flex align-items-center mb-4">
@@ -183,7 +183,7 @@
                             <h6>Last Name</h6>
                         </div>
                     </div>
-                    <button class="btn btn-primary py-3 px-5 mt-2">Edit Details</button>
+                    <button class="btn main-btn py-3 px-5 mt-2">Edit Details</button>
                 </div>
             </div>
             
