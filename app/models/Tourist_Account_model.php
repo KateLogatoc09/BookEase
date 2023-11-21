@@ -45,8 +45,12 @@ class Tourist_Account_model extends Model {
         return $this->db->table('tourist_account')->where('token', $token)->update($bind);
     }
 
-    public function Get_User_Account_Info($token) {
+    public function Get_Info($token) {
         return $this->db->table('tourist_account')->where('token',$token)->get();
+    }
+
+    public function Get_Details($token) {
+        return $this->db->table('tourist_account as acc')->select('gender, birthdate, firstname, middlename, lastname')->inner_join('tourist_info as info','acc.id=info.user_id')->where('token',$token)->get();
     }
 }
 ?>

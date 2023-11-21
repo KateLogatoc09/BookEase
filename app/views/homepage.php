@@ -55,7 +55,7 @@
                 <div class="navbar-nav ms-auto py-0">
                     <a href="/" class="nav-item nav-link active">Home</a>
                     <?php if(isset($_SESSION['token'])): ?>
-                    <a href="/account" class="nav-item nav-link active">Account</a>
+                    <a href="/account" class="nav-item nav-link">Account</a>
                     <?php endif; ?>
                     <a href="/spa" class="nav-item nav-link">Spa</a>
                     <a href="/resorts" class="nav-item nav-link">Resort</a>

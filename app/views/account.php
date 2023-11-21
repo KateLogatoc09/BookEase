@@ -119,7 +119,7 @@
                         </div>
                         <div class="ms-3">
                             <h6 class="green">Username</h6>
-                            <h6>Username</h6>
+                            <h6><?= $username ?></h6>
                         </div>
                     </div>
                     <div class="d-flex align-items-center">
@@ -128,7 +128,7 @@
                         </div>
                         <div class="ms-3">
                             <h6 class="green">Email</h6>
-                            <h6>Email</h6>
+                            <h6><?= $email ?></h6>
                         </div>
                     </div>
                     <div class="d-flex align-items-center mb-4" id="space2">
@@ -137,7 +137,7 @@
                         </div>
                         <div class="ms-3">
                             <h6 class="green">Mobile</h6>
-                            <h6>Mobile</h6>
+                            <h6><?= $phone ?></h6>
                         </div>
                     </div>
                     <div class="d-flex align-items-center mb-4" id="space2">
@@ -146,7 +146,7 @@
                         </div>
                         <div class="ms-3">
                             <h6 class="green">Address</h6>
-                            <h6>Address</h6>
+                            <h6><?= $address ?></h6>
                         </div>
                     </div>
                     <div class="d-flex align-items-center mb-4">
@@ -155,7 +155,7 @@
                         </div>
                         <div class="ms-3">
                             <h6 class="green">Gender</h6>
-                            <h6>Gender</h6>
+                            <h6><?= $gender ?></h6>
                         </div>
                     </div>
                 </div>
@@ -167,7 +167,7 @@
                         </div>
                         <div class="ms-3">
                             <h6 class="green">Birthdate</h6>
-                            <h6>Birthdate</h6>
+                            <h6><?= $birthdate ?></h6>
                         </div>
                     </div>
                     <div class="d-flex align-items-center mb-4" id="space2">
@@ -176,7 +176,7 @@
                         </div>
                         <div class="ms-3">
                             <h6 class="green">First Name: </h6>
-                            <h6>First Name</h6>
+                            <h6><?= $firstname ?></h6>
                         </div>
                     </div>
                     <div class="d-flex align-items-center mb-4" id="space2">
@@ -185,7 +185,7 @@
                         </div>
                         <div class="ms-3">
                             <h6 class="green">Middle Name: </h6>
-                            <h6>Middle Name</h6>
+                            <h6><?= $middlename ?></h6>
                         </div>
                     </div>
                     <div class="d-flex align-items-center mb-4" id="space2">
@@ -194,7 +194,7 @@
                         </div>
                         <div class="ms-3">
                             <h6 class="green">Last Name: </h6>
-                            <h6>Last Name</h6>
+                            <h6><?= $lastname ?></h6>
                         </div>
                     </div>
                     <button class="btn main-btn py-3 px-5 mt-2">Edit Details</button>
