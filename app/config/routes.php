@@ -53,3 +53,6 @@ $router->get('apartments', 'Main::apartments');
 $router->get('admin', 'Main::admin');
 $router->get('register', 'Main::register');
 $router->get('login', 'Main::login');
+$router->match('/auth', 'Authentication::login', 'GET|POST');
+$router->match('/registernew', 'Authentication::register', 'GET|POST');
+$router->get('/logout', 'Authentication::logout');

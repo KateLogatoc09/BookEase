@@ -64,7 +64,7 @@ $database['main'] = array(
     'port'		=> '3306',
     'username'	=> 'root',
     'password'	=> '',
-    'database'	=> 'pgt',
+    'database'	=> 'bookease',
     'charset'	=> 'utf8',
     'dbprefix'	=> '',
 );
