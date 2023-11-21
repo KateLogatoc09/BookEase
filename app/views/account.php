@@ -68,7 +68,7 @@
                     <a href="/resorts" class="nav-item nav-link">Resort</a>
                     <a href="/apartments" class="nav-item nav-link">Apartment</a>
                     <?php if(isset($_SESSION['token'])): ?>
-                    <a href="/logout" class="nav-item nav-link">logout</a>
+                    <a href="/logout" class="nav-item nav-link">Logout</a>
                     <?php endif; ?>
                 </div>
                 <?php if(!isset($_SESSION['token'])): ?>
@@ -104,7 +104,7 @@
                 <h6 class="section-title bg-white text-center green px-3">Account Settings</h6>
                 <h1 class="mb-5">Profile Information</h1>
             </div>
-            <div v-if="!show" class="row g-4"  id="classy2">
+            <div class="row g-4"  id="classy2">
 
                 <div class="col-lg-4 col-md-12 wow fadeInUp" data-wow-delay="0.5s" style="min-height: 400px;">
                     <div class="position-relative h-100">
@@ -200,16 +200,117 @@
                     <button class="btn main-btn py-3 px-5 mt-2">Edit Details</button>
                 </div>
             </div>
-            
-           
                     </div>
                 </div>
             </div>
 
-
-
         </div>
     </div>
+
+    
+    <div class="back3">
+                <div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="container">
+                        <div>
+                            <h1 class="text-white mb-4 text-center" id="classy">Update Information</h1>
+                                <form>
+                                    <div class="row g-5 align-items-center">
+                                        <!-- image -->
+                                        <div>
+                                        <img class="img-fluid2 center2" src='public/img/user-1.jpg' alt="" style="object-fit: cover;">
+                                        </div>
+
+                                        <div class="col-md-6 text-white" id="classy2">
+                                            <div class="row g-3">
+
+                                                <div class="col-md-12"  id="color">
+                                                    <div class="form-floating">
+                                                        <input type="email" class="form-control bg-transparent" id="email" placeholder="Email" required>
+                                                        <label for="email">Email</label>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-12" id="color">
+                                                    <div class="form-floating">
+                                                        <input type="text" class="form-control bg-transparent" id="username" placeholder="Username" required>
+                                                        <label for="username">Username</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12" id="color">
+                                                    <div class="form-floating">
+                                                        <input type="date" minlength="8" class="form-control bg-transparent" id="birthdate" placeholder="Birthdate" required>
+                                                        <label for="birthdate">Birthdate</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12" id="color">
+                                                    <div class="form-floating">
+                                                        <select id="gender" class="form-control bg-transparent" name="gender" required>
+                                                            <option value="Female">Female</option>
+                                                            <option value="Male">Male</option>
+                                                            <option value="Others">Others</option>
+                                                        </select>
+                                                        <label for="gender">Gender</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12"  id="color">
+                                                    <div class="form-floating">
+                                                        <input type="tel" maxlength="11" class="form-control bg-transparent" placeholder="Number" id="phone" required>
+                                                        <label for="number">Phone Number</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <div class="row g-3">
+
+                                                <div class="col-md-12" id="color">
+                                                    <div class="form-floating">
+                                                        <input type="text" class="form-control bg-transparent" id="first_name" placeholder="First Name" required>
+                                                        <label for="fname">First Name</label>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-12" id="color">
+                                                    <div class="form-floating">
+                                                        <input type="text" class="form-control bg-transparent" id="middle_name" placeholder="Middle Name">
+                                                        <label for="mname">Middle Name</label>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-12" id="color">
+                                                    <div class="form-floating">
+                                                        <input type="text" class="form-control bg-transparent" id="last_name" placeholder="Last Name" required>
+                                                        <label for="lname">Last Name</label>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-12" id="color">
+                                                    <div class="form-floating">
+                                                        <input type="text" class="form-control bg-transparent" id="address" placeholder="Address" required>
+                                                        <label for="address">Address</label>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-12" id="color">
+                                                    <div class="form-floating">
+                                                        <input type="file" class="form-control bg-transparent" id="photo" placeholder="Photo">
+                                                        <label for="photo" class="pad">Upload New Photo</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    <div class="col-12">
+                                        <button class="btn btn-outline-light w-50 py-3 center" type="submit">Update Info</button>
+                                    </div>
+                                    <div class="col-12">
+                                        <button class="btn btn-outline-light w-50 py-3 center">Go Back</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
 
     <!-- Footer Start -->
     <div class="container-fluid bg-dark text-light footer pt-5 mt-5 wow fadeIn" data-wow-delay="0.1s">

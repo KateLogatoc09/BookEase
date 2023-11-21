@@ -54,6 +54,12 @@ $router->get('register', 'Main::register');
 $router->get('login', 'Main::login');
 $router->get('adminlogin', 'Main::adminlogin');
 $router->match('/auth', 'Authentication::login', 'GET|POST');
+<<<<<<< Updated upstream
 $router->post('/registernew', 'Authentication::register');
 $router->get('/logout', 'Authentication::logout');
 $router->match('/account', 'Tourist_Info::get_userinfo', 'GET|POST');
+=======
+$router->match('/registernew', 'Authentication::register', 'GET|POST');
+$router->get('/logout', 'Authentication::logout');
+$router->match('/account', 'Tourist_Info::get_userinfo', 'GET|POST');
+>>>>>>> Stashed changes
