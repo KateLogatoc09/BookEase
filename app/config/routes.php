@@ -53,3 +53,4 @@ $router->get('apartments', 'Main::apartments');
 $router->get('admin', 'Main::admin');
 $router->get('register', 'Main::register');
 $router->get('login', 'Main::login');
+$router->get('adminlogin', 'Main::adminlogin');

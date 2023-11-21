@@ -26,5 +26,8 @@ class Main extends Controller {
     public function login(){
         $this->call->view('login');
     }
+    public function adminlogin(){
+        $this->call->view('adminlogin');
+    }
 }
 ?>
