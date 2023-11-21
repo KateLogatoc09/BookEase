@@ -150,7 +150,9 @@ class Authentication extends Controller {
     public function logout() {
         $random = substr(str_shuffle(str_repeat("0123456789abcdefghijklmnopqrstvwxyzABCDEFGHIJKLMNOPQRSTVWXYZ", 60)), 0, 60);
         $newToken = $random;
-        $prevToken = sha1($_SESSION['token']);
+        if(isset($_SESSION['token'])) {
+            $prevToken = sha1($_SESSION['token']);
+        }
         $new = $this->users->New_Token($prevToken, sha1($newToken));
         if($new) {
             session_destroy();

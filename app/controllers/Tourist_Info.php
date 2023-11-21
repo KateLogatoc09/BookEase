@@ -9,7 +9,9 @@ class Tourist_Info extends Controller {
     }
 
     public function get_userinfo() {
-        $Token = sha1($_SESSION['token']);
+        if(isset($_SESSION['token'])) {
+            $Token = sha1($_SESSION['token']);
+        }
         $res = $this->users->Get_Info($Token);
         $res2 = $this->users->Get_Details($Token);
         if($res && $res2) {

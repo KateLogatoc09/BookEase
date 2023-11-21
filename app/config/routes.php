@@ -46,7 +46,6 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
 
 //$router->get('/', 'Welcome::index');
 $router->get('/', 'Main::index');
-$router->get('account', 'Main::account');
 $router->get('spa', 'Main::spa');
 $router->get('resorts', 'Main::resorts');
 $router->get('apartments', 'Main::apartments');
@@ -54,3 +53,7 @@ $router->get('admin', 'Main::admin');
 $router->get('register', 'Main::register');
 $router->get('login', 'Main::login');
 $router->get('adminlogin', 'Main::adminlogin');
+$router->match('/auth', 'Authentication::login', 'GET|POST');
+$router->post('/registernew', 'Authentication::register');
+$router->get('/logout', 'Authentication::logout');
+$router->match('/account', 'Tourist_Info::get_userinfo', 'GET|POST');
