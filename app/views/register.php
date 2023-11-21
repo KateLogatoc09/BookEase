@@ -1,3 +1,10 @@
+<?php 
+    if(isset($_SESSION['token'])) {
+        redirect(site_url().'/account');
+    } else {
+
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -47,13 +54,20 @@
             <div class="collapse navbar-collapse green" id="navbarCollapse">
                 <div class="navbar-nav ms-auto py-0">
                     <a href="/" class="nav-item nav-link">Home</a>
+                    <?php if(isset($_SESSION['token'])): ?>
                     <a href="/account" class="nav-item nav-link">Account</a>
+                    <?php endif; ?>
                     <a href="/spa" class="nav-item nav-link">Spa</a>
                     <a href="/resorts" class="nav-item nav-link">Resort</a>
                     <a href="/apartments" class="nav-item nav-link">Apartment</a>
+                    <?php if(isset($_SESSION['token'])): ?>
+                    <a href="/logout" class="nav-item nav-link">logout</a>
+                    <?php endif; ?>
                 </div>
+                <?php if(!isset($_SESSION['token'])): ?>
                 <a href="/login" class="btn btn-sm main-btn px-4 border-end login">Login</a>
                 <a href="/register" class="btn btn-sm main-btn px-3 border-end register">Register</a>
+                <?php endif; ?>
             </div>
         </nav>
     <!-- Navbar & Hero End -->
@@ -63,25 +77,26 @@
         <div class="container">
             <div>
                 <h1 class="text-white mb-4 text-center" id="classy">Register Account</h1>
-                <form @submit.prevent="reg_tourist">
+                <pre class="text-white text-center" style='word-break:break-word;'><?php if(isset($_SESSION['msg'])): ?> <?= $_SESSION['msg'] ?><?php endif;?></pre>
+                <form action='/registernew' method='post'>
                 <div class="row g-5 align-items-center">
                     <div class="col-md-6 text-white" id="classy2">
                         <div class="row g-3">
                         <div class="col-md-12"  id="color">
                                 <div class="form-floating">
-                                        <input type="email" class="form-control bg-transparent" id="email" placeholder="Your Email"  required>
+                                        <input type="email" class="form-control bg-transparent" id="email" name="email" placeholder="Your Email"  required>
                                         <label for="email">Your Email</label>
                                  </div>
                             </div>
                         <div class="col-md-12" id="color">
                                     <div class="form-floating">
-                                        <input type="password" minlength="8" class="form-control bg-transparent" id="password" placeholder="Your Password" required>
+                                        <input type="password" minlength="8" class="form-control bg-transparent" id="password" name="password" placeholder="Your Password" required>
                                         <label for="password">Your Password</label>
                                     </div>
                                 </div>
                                 <div class="col-md-12" id="color">
                                     <div class="form-floating">
-                                        <input type="password" minlength="8" class="form-control bg-transparent" id="c_password" placeholder="Enter Confirm Password" required>
+                                        <input type="password" minlength="8" class="form-control bg-transparent" id="c_password" name="c_password" placeholder="Enter Confirm Password" required>
                                         <label for="confirmpassword">Enter Confirm Password</label>
                                     </div>
                                 </div>
@@ -91,21 +106,21 @@
                             <div class="row g-3">
                                 <div class="col-md-12" id="color">
                                     <div class="form-floating">
-                                        <input type="text" class="form-control bg-transparent" id="username" placeholder="Your Username" required>
+                                        <input type="text" class="form-control bg-transparent" id="username" name="username" placeholder="Your Username" required>
                                         <label for="username">Your Username</label>
                                     </div>
                                 </div>
 
                                 <div class="col-md-12"  id="color">
                                     <div class="form-floating">
-                                        <input type="tel" maxlength="11" class="form-control bg-transparent" id="number" @input="phonecheck()" placeholder="Your Phone Number (09XXXXXXXXX)" required>
-                                        <label for="number">Your Phone Number</label>
+                                        <input type="tel" maxlength="11" class="form-control bg-transparent" id="phone" name="phone" placeholder="Your Phone Number (09XXXXXXXXX)" required>
+                                        <label for="phone">Your Phone Number</label>
                                     </div>
                                 </div>
 
                                 <div class="col-md-12" id="color">
                                     <div class="form-floating">
-                                        <input type="text" class="form-control bg-transparent" id="address" placeholder="Your Address" required>
+                                        <input type="text" class="form-control bg-transparent" id="address"  name="address" placeholder="Your Address" required>
                                         <label for="address">Your Address</label>
                                     </div>
                                 </div>

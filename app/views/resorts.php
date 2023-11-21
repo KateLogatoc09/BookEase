@@ -54,13 +54,20 @@
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav ms-auto py-0">
                     <a href="/" class="nav-item nav-link">Home</a>
+                    <?php if(isset($_SESSION['token'])): ?>
                     <a href="/account" class="nav-item nav-link">Account</a>
+                    <?php endif; ?>
                     <a href="/spa" class="nav-item nav-link">Spa</a>
                     <a href="/resorts" class="nav-item nav-link active">Resort</a>
                     <a href="/apartments" class="nav-item nav-link">Apartment</a>
+                    <?php if(isset($_SESSION['token'])): ?>
+                    <a href="/logout" class="nav-item nav-link">logout</a>
+                    <?php endif; ?>
                 </div>
+                <?php if(!isset($_SESSION['token'])): ?>
                 <a href="/login" class="btn btn-sm main-btn px-4 border-end login">Login</a>
                 <a href="/register" class="btn btn-sm main-btn px-3 border-end register">Register</a>
+                <?php endif; ?>
             </div>
         </nav>
 

@@ -1,3 +1,10 @@
+<?php 
+    if(!isset($_SESSION['token'])) {
+        redirect(site_url().'/login');
+    } else {
+
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -54,13 +61,20 @@
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav ms-auto py-0">
                     <a href="/" class="nav-item nav-link">Home</a>
+                    <?php if(isset($_SESSION['token'])): ?>
                     <a href="/account" class="nav-item nav-link active">Account</a>
+                    <?php endif; ?>
                     <a href="/spa" class="nav-item nav-link">Spa</a>
                     <a href="/resorts" class="nav-item nav-link">Resort</a>
                     <a href="/apartments" class="nav-item nav-link">Apartment</a>
+                    <?php if(isset($_SESSION['token'])): ?>
+                    <a href="/logout" class="nav-item nav-link">logout</a>
+                    <?php endif; ?>
                 </div>
+                <?php if(!isset($_SESSION['token'])): ?>
                 <a href="/login" class="btn btn-sm main-btn px-4 border-end login">Login</a>
                 <a href="/register" class="btn btn-sm main-btn px-3 border-end register">Register</a>
+                <?php endif; ?>
             </div>
         </nav>
 
@@ -105,7 +119,7 @@
                         </div>
                         <div class="ms-3">
                             <h6 class="green">Username</h6>
-                            <h6>Username</h6>
+                            <h6><?= $username ?></h6>
                         </div>
                     </div>
                     <div class="d-flex align-items-center">
@@ -114,7 +128,7 @@
                         </div>
                         <div class="ms-3">
                             <h6 class="green">Email</h6>
-                            <h6>Email</h6>
+                            <h6><?= $email ?></h6>
                         </div>
                     </div>
                     <div class="d-flex align-items-center mb-4" id="space2">
@@ -123,7 +137,7 @@
                         </div>
                         <div class="ms-3">
                             <h6 class="green">Mobile</h6>
-                            <h6>Mobile</h6>
+                            <h6><?= $phone ?></h6>
                         </div>
                     </div>
                     <div class="d-flex align-items-center mb-4" id="space2">
@@ -132,7 +146,7 @@
                         </div>
                         <div class="ms-3">
                             <h6 class="green">Address</h6>
-                            <h6>Address</h6>
+                            <h6><?= $address ?></h6>
                         </div>
                     </div>
                     <div class="d-flex align-items-center mb-4">
@@ -141,7 +155,7 @@
                         </div>
                         <div class="ms-3">
                             <h6 class="green">Gender</h6>
-                            <h6>Gender</h6>
+                            <h6><?= $gender ?></h6>
                         </div>
                     </div>
                 </div>
@@ -153,7 +167,7 @@
                         </div>
                         <div class="ms-3">
                             <h6 class="green">Birthdate</h6>
-                            <h6>Birthdate</h6>
+                            <h6><?= $birthdate ?></h6>
                         </div>
                     </div>
                     <div class="d-flex align-items-center mb-4" id="space2">
@@ -162,7 +176,7 @@
                         </div>
                         <div class="ms-3">
                             <h6 class="green">First Name: </h6>
-                            <h6>First Name</h6>
+                            <h6><?= $firstname ?></h6>
                         </div>
                     </div>
                     <div class="d-flex align-items-center mb-4" id="space2">
@@ -171,7 +185,7 @@
                         </div>
                         <div class="ms-3">
                             <h6 class="green">Middle Name: </h6>
-                            <h6>Middle Name</h6>
+                            <h6><?= $middlename ?></h6>
                         </div>
                     </div>
                     <div class="d-flex align-items-center mb-4" id="space2">
@@ -180,7 +194,7 @@
                         </div>
                         <div class="ms-3">
                             <h6 class="green">Last Name: </h6>
-                            <h6>Last Name</h6>
+                            <h6><?= $lastname ?></h6>
                         </div>
                     </div>
                     <button class="btn main-btn py-3 px-5 mt-2">Edit Details</button>
