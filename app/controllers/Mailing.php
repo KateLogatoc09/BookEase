@@ -8,6 +8,14 @@ class Mailing extends Controller {
         $this->call->model('Mail_Model', 'mail');
     }
 
+    public function email() {
+        $this->call->view('admin_mail');
+    }
+
+    public function subs() {
+        $this->call->view('admin_subscription');
+    }
+
     public function query() {
         ini_set('SMTP', 'mailpit');
         ini_set('smtp_port', 1025);

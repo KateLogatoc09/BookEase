@@ -63,6 +63,8 @@ $router->get('recovery', 'Main::recovery');
 
 $router->post('query', 'Mailing::query');
 $router->post('subscribe', 'Mailing::subscribe');
+$router->get('admin_emails_send', 'Mailing::email');
+$router->get('admin_subscription_subscribers', 'Mailing::subs');
 
 $router->post('verifying', 'Authentication::verify');
 $router->match('auth', 'Authentication::login', 'GET|POST');
@@ -109,3 +111,5 @@ $router->get('admin_tourists_manage', 'Users::t_manage');
 $router->match('active/(:num)', 'Users::active', 'GET|POST');
 $router->match('ban/(:num)', 'Users::ban', 'GET|POST');
 $router->get('admin_admin_manage', 'Users::a_manage');
+
+
