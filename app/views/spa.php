@@ -30,6 +30,11 @@
 
     <!-- Template Stylesheet -->
     <link href="public/css/style.css" rel="stylesheet">
+
+    <!-- AlertJs -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
+    <!-- Default theme -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css"/>
 </head>
 
 <body>
@@ -54,6 +59,7 @@
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav ms-auto py-0">
                     <a href="/" class="nav-item nav-link">Home</a>
+                    <a href="/about" class="nav-item nav-link">About</a>
                     <?php if(isset($_SESSION['token'])): ?>
                     <a href="/account" class="nav-item nav-link">Account</a>
                     <?php endif; ?>
@@ -90,90 +96,37 @@
     </div>
     <!-- Navbar & Hero End -->
 
-    <!-- Service Start -->
+    <!-- Rooms Start -->
     <div class="container-xxl py-5">
         <div class="container">
             <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-                <h6 class="section-title bg-white text-center text-primary px-3">Services</h6>
-                <h1 class="mb-5">Our Services</h1>
+                <h6 class="section-title bg-white text-center text-primary px-3">Resort</h6>
+                <h1 class="mb-5">Services Offerred</h1>
             </div>
-            <div class="row g-4">
-                <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="service-item rounded pt-3">
-                        <div class="p-4">
-                            <i class="fa fa-3x fa-globe text-primary mb-4"></i>
-                            <h5>WorldWide Tours</h5>
-                            <p>Diam elitr kasd sed at elitr sed ipsum justo dolor sed clita amet diam</p>
+            <div class="row g-4 justify-content-center">
+                <?php foreach($services as $serv): ?>
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="package-item">
+                        <div class="overflow-hidden">
+                            <img class="" src="<?= site_url().'/'.$serv['photo'] ?>" alt="" height="320px" width="100%">
+                        </div>
+                        <div class="text-center p-4">
+                            <h4 class="mb-0"><?= $serv['name'] ?></h4>
+                            <hr>
+                            <p><h6 class="nobr">Description: </h6><?= $serv['description'] ?></p>
+                            <p><h6 class="nobr">Price: </h6>&#8369; <?= $serv['actual_price'] ?></p>
+                            <div class="d-flex justify-content-center mb-2">
+                                <a href="#" class="btn btn-sm btn-primary px-3 border-end" style="border-radius: 30px 0 0 30px;">Read More</a>
+                                <a href="<?=site_url()?>/appointment/<?=$serv['id']?>" class="btn btn-sm btn-primary px-3" style="border-radius: 0 30px 30px 0;">Book Now</a>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
-                    <div class="service-item rounded pt-3">
-                        <div class="p-4">
-                            <i class="fa fa-3x fa-hotel text-primary mb-4"></i>
-                            <h5>Hotel Reservation</h5>
-                            <p>Diam elitr kasd sed at elitr sed ipsum justo dolor sed clita amet diam</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.5s">
-                    <div class="service-item rounded pt-3">
-                        <div class="p-4">
-                            <i class="fa fa-3x fa-user text-primary mb-4"></i>
-                            <h5>Travel Guides</h5>
-                            <p>Diam elitr kasd sed at elitr sed ipsum justo dolor sed clita amet diam</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.7s">
-                    <div class="service-item rounded pt-3">
-                        <div class="p-4">
-                            <i class="fa fa-3x fa-cog text-primary mb-4"></i>
-                            <h5>Event Management</h5>
-                            <p>Diam elitr kasd sed at elitr sed ipsum justo dolor sed clita amet diam</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="service-item rounded pt-3">
-                        <div class="p-4">
-                            <i class="fa fa-3x fa-globe text-primary mb-4"></i>
-                            <h5>WorldWide Tours</h5>
-                            <p>Diam elitr kasd sed at elitr sed ipsum justo dolor sed clita amet diam</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
-                    <div class="service-item rounded pt-3">
-                        <div class="p-4">
-                            <i class="fa fa-3x fa-hotel text-primary mb-4"></i>
-                            <h5>Hotel Reservation</h5>
-                            <p>Diam elitr kasd sed at elitr sed ipsum justo dolor sed clita amet diam</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.5s">
-                    <div class="service-item rounded pt-3">
-                        <div class="p-4">
-                            <i class="fa fa-3x fa-user text-primary mb-4"></i>
-                            <h5>Travel Guides</h5>
-                            <p>Diam elitr kasd sed at elitr sed ipsum justo dolor sed clita amet diam</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.7s">
-                    <div class="service-item rounded pt-3">
-                        <div class="p-4">
-                            <i class="fa fa-3x fa-cog text-primary mb-4"></i>
-                            <h5>Event Management</h5>
-                            <p>Diam elitr kasd sed at elitr sed ipsum justo dolor sed clita amet diam</p>
-                        </div>
-                    </div>
-                </div>
+                <?php endforeach; ?>
             </div>
         </div>
     </div>
-    <!-- Service End -->
+    <!-- Rooms End -->
         
     <!-- Footer Start -->
     <div class="container-fluid bg-dark text-light footer pt-5 mt-5 wow fadeIn" data-wow-delay="0.1s">
@@ -225,10 +178,12 @@
                 <div class="col-lg-3 col-md-6">
                     <h4 class="text-white mb-3">Newsletter</h4>
                     <p>Dolor amet sit justo amet elitr clita ipsum elitr est.</p>
+                    <form action='subscribe' method='post'>
                     <div class="position-relative mx-auto" style="max-width: 400px;">
-                        <input class="form-control border-primary w-100 py-3 ps-4 pe-5" type="text" placeholder="Your email">
-                        <button type="button" class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2">SignUp</button>
+                        <input class="form-control border-primary w-100 py-3 ps-4 pe-5" type="email" name="subs" placeholder="Your email">
+                        <button type="submit" class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2">SignUp</button>
                     </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -271,8 +226,97 @@
     <script src="public/lib/tempusdominus/js/moment-timezone.min.js"></script>
     <script src="public/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
 
+    <!-- AlertJs -->
+    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+
     <!-- Template Javascript -->
     <script src="public/js/main.js"></script>
+
+    <!-- Custom Js -->
+    <script>
+        $(document).ready(function(){
+            alertify.defaults = {
+                // dialogs defaults
+                autoReset:true,
+                basic:false,
+                closable:true,
+                closableByDimmer:true,
+                invokeOnCloseOff:false,
+                frameless:false,
+                defaultFocusOff:false,
+                maintainFocus:true, // <== global default not per instance, applies to all dialogs
+                maximizable:true,
+                modal:true,
+                movable:true,
+                moveBounded:false,
+                overflow:true,
+                padding: true,
+                pinnable:true,
+                pinned:true,
+                preventBodyShift:false, // <== global default not per instance, applies to all dialogs
+                resizable:true,
+                startMaximized:false,
+                transition:'pulse',
+                transitionOff:false,
+                tabbable:'button:not(:disabled):not(.ajs-reset),[href]:not(:disabled):not(.ajs-reset),input:not(:disabled):not(.ajs-reset),select:not(:disabled):not(.ajs-reset),textarea:not(:disabled):not(.ajs-reset),[tabindex]:not([tabindex^="-"]):not(:disabled):not(.ajs-reset)',  // <== global default not per instance, applies to all dialogs
+
+                // notifier defaults
+                notifier:{
+                // auto-dismiss wait time (in seconds)  
+                    delay:5,
+                // default position
+                    position:'bottom-right',
+                // adds a close button to notifier messages
+                    closeButton: false,
+                // provides the ability to rename notifier classes
+                    classes : {
+                        base: 'alertify-notifier',
+                        prefix:'ajs-',
+                        message: 'ajs-message',
+                        top: 'ajs-top',
+                        right: 'ajs-right',
+                        bottom: 'ajs-bottom',
+                        left: 'ajs-left',
+                        center: 'ajs-center',
+                        visible: 'ajs-visible',
+                        hidden: 'ajs-hidden',
+                        close: 'ajs-close'
+                    }
+                },
+
+                // language resources 
+                glossary:{
+                    // dialogs default title
+                    title:'Bookease',
+                    // ok button text
+                    ok: 'OK',
+                    // cancel button text
+                    cancel: 'Cancel'            
+                },
+
+                // theme settings
+                theme:{
+                    // class name attached to prompt dialog input textbox.
+                    input:'ajs-input',
+                    // class name attached to ok button
+                    ok:'ajs-ok',
+                    // class name attached to cancel button 
+                    cancel:'ajs-cancel'
+                },
+                // global hooks
+                hooks:{
+                    // invoked before initializing any dialog
+                    preinit:function(instance){},
+                    // invoked after initializing any dialog
+                    postinit:function(instance){},
+                },
+            };
+            
+            <?php if (isset($_SESSION['msg'])): ?>
+                alertify.alert('Note: <?= $_SESSION['msg'] ?>');
+            <?php endif; ?>
+        });
+    </script>
 </body>
 
 </html>

@@ -2,7 +2,13 @@
     if(isset($_SESSION['token'])) {
         redirect(site_url().'/account');
     } else {
+        if(isset($_SESSION['role'])) {
+            if($_SESSION['role'] == 'TOURIST') {
+                session_unset();
+            } else {
 
+            }
+        }
     }
 ?>
 <!DOCTYPE html>
@@ -37,6 +43,11 @@
 
     <!-- Template Stylesheet -->
     <link href="public/css/style.css" rel="stylesheet">
+
+    <!-- AlertJs -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
+    <!-- Default theme -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css"/>
 </head>
 
 <body>
@@ -54,6 +65,7 @@
             <div class="collapse navbar-collapse green" id="navbarCollapse">
                 <div class="navbar-nav ms-auto py-0">
                     <a href="/" class="nav-item nav-link">Home</a>
+                    <a href="/about" class="nav-item nav-link">About</a>
                     <?php if(isset($_SESSION['token'])): ?>
                     <a href="/account" class="nav-item nav-link">Account</a>
                     <?php endif; ?>
@@ -83,22 +95,25 @@
            
                     </div>
                     <div class="col-md-6">
-                        <h1 class="text-white mb-4 text-center" id="classy">Log In Now</h1>
+                        <h3 class="text-white mb-4 text-center" id="classy">Log In Now</h3>
                         <form action='/auth' method='post'>
                             <div class="row g-3">
-                                <div v-if='!changed' class="col-md-12"  id="color">
+
+                                <div class="col-md-12 text-white"  id="username">
                                     <div class="form-floating">
-                                        <input type="text" class="form-control bg-transparent" id="username" name="username" placeholder="Your Username" required>
+                                        <input type="text" class="form-control bg-transparent" name="username" placeholder="Your Username">
                                         <label for="username">Your Username</label>
                                     </div>
                                 </div>
-                                <!-- <div v-else class="col-md-12"  id="color">
+
+                                <div class="col-md-12 hidden text-white"  id="email">
                                     <div class="form-floating">
-                                        <input type="email" class="form-control bg-transparent" id="email" placeholder="Your Email" required>
+                                        <input type="email" class="form-control bg-transparent" name="email" placeholder="Your Email">
                                         <label for="email">Your Email</label>
                                     </div>
-                                </div> -->
-                                <div class="col-md-12" id="color">
+                                </div>
+
+                                <div class="col-md-12 text-white">
                                     <div class="form-floating">
                                         <input type="password" class="form-control bg-transparent" id="password" name="password" placeholder="Your Password" required>
                                         <label for="password">Your Password</label>
@@ -107,9 +122,9 @@
                                 <div class="col-12">
                                     <button class="btn btn-outline-light w-100 py-3" type="submit">Login Now</button>
                                 </div>
-                                <a href class="dark" id="classy">Log in with your email instead?</a>
-                                <a href class="dark" id="classy">Log in with your username instead?</a>
-                                <a href class="dark" id="classy">Forgot Password?</a>
+                                <a class="dark pointer text-center" id="emailbtn">Log in with your email instead?</a>
+                                <a class="dark hidden pointer text-center" id="unamebtn">Log in with your username instead?</a>
+                                <a href="recovery" class="dark text-center" >Forgot Password?</a>
                             </div>
                         </form>
                     </div>
@@ -169,10 +184,12 @@
                 <div class="col-lg-3 col-md-6">
                     <h4 class="text-white mb-3">Newsletter</h4>
                     <p>Dolor amet sit justo amet elitr clita ipsum elitr est.</p>
+                    <form action='subscribe' method='post'>
                     <div class="position-relative mx-auto" style="max-width: 400px;">
-                        <input class="form-control border-primary w-100 py-3 ps-4 pe-5" type="text" placeholder="Your email">
-                        <button type="button" class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2">SignUp</button>
+                        <input class="form-control border-primary w-100 py-3 ps-4 pe-5" type="email" name="subs" placeholder="Your email">
+                        <button type="submit" class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2">SignUp</button>
                     </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -215,8 +232,120 @@
     <script src="public/lib/tempusdominus/js/moment-timezone.min.js"></script>
     <script src="public/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
 
+    <!-- AlertJs -->
+    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+
     <!-- Template Javascript -->
     <script src="public/js/main.js"></script>
-</body>
 
+    <!-- Custom Javascript -->
+    <script>
+
+$(document).ready(function(){
+            alertify.defaults = {
+                // dialogs defaults
+                autoReset:true,
+                basic:false,
+                closable:true,
+                closableByDimmer:true,
+                invokeOnCloseOff:false,
+                frameless:false,
+                defaultFocusOff:false,
+                maintainFocus:true, // <== global default not per instance, applies to all dialogs
+                maximizable:true,
+                modal:true,
+                movable:true,
+                moveBounded:false,
+                overflow:true,
+                padding: true,
+                pinnable:true,
+                pinned:true,
+                preventBodyShift:false, // <== global default not per instance, applies to all dialogs
+                resizable:true,
+                startMaximized:false,
+                transition:'pulse',
+                transitionOff:false,
+                tabbable:'button:not(:disabled):not(.ajs-reset),[href]:not(:disabled):not(.ajs-reset),input:not(:disabled):not(.ajs-reset),select:not(:disabled):not(.ajs-reset),textarea:not(:disabled):not(.ajs-reset),[tabindex]:not([tabindex^="-"]):not(:disabled):not(.ajs-reset)',  // <== global default not per instance, applies to all dialogs
+
+                // notifier defaults
+                notifier:{
+                // auto-dismiss wait time (in seconds)  
+                    delay:5,
+                // default position
+                    position:'bottom-right',
+                // adds a close button to notifier messages
+                    closeButton: false,
+                // provides the ability to rename notifier classes
+                    classes : {
+                        base: 'alertify-notifier',
+                        prefix:'ajs-',
+                        message: 'ajs-message',
+                        top: 'ajs-top',
+                        right: 'ajs-right',
+                        bottom: 'ajs-bottom',
+                        left: 'ajs-left',
+                        center: 'ajs-center',
+                        visible: 'ajs-visible',
+                        hidden: 'ajs-hidden',
+                        close: 'ajs-close'
+                    }
+                },
+
+                // language resources 
+                glossary:{
+                    // dialogs default title
+                    title:'Bookease',
+                    // ok button text
+                    ok: 'OK',
+                    // cancel button text
+                    cancel: 'Cancel'            
+                },
+
+                // theme settings
+                theme:{
+                    // class name attached to prompt dialog input textbox.
+                    input:'ajs-input',
+                    // class name attached to ok button
+                    ok:'ajs-ok',
+                    // class name attached to cancel button 
+                    cancel:'ajs-cancel'
+                },
+                // global hooks
+                hooks:{
+                    // invoked before initializing any dialog
+                    preinit:function(instance){},
+                    // invoked after initializing any dialog
+                    postinit:function(instance){},
+                },
+            };
+            
+            <?php if (isset($_SESSION['msg'])): ?>
+                alertify.alert('Note: <?= $_SESSION['msg'] ?>');
+            <?php endif; ?>
+        });
+
+    const emailbtn = document.getElementById('emailbtn');
+    const emailinput = document.getElementById('email');
+    const unamebtn = document.getElementById('unamebtn');
+    const unameinput = document.getElementById('username');
+
+    const logemail = function () {
+        emailinput.classList.remove('hidden');
+        emailbtn.classList.add('hidden');
+        unamebtn.classList.remove('hidden');
+        unameinput.classList.add('hidden');
+    }
+
+    emailbtn.addEventListener("click", logemail);
+
+    const loguname = function () {
+        emailinput.classList.add('hidden');
+        emailbtn.classList.remove('hidden');
+        unamebtn.classList.add('hidden');
+        unameinput.classList.remove('hidden');
+    }
+
+    unamebtn.addEventListener("click", loguname);
+    </script>
+</body>
 </html>

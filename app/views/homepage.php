@@ -30,6 +30,11 @@
 
     <!-- Template Stylesheet -->
     <link href="public/css/style.css" rel="stylesheet">
+
+    <!-- AlertJs -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
+    <!-- Default theme -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css"/>
 </head>
 
 <body>
@@ -54,6 +59,7 @@
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav ms-auto py-0">
                     <a href="/" class="nav-item nav-link active">Home</a>
+                    <a href="/about" class="nav-item nav-link">About</a>
                     <?php if(isset($_SESSION['token'])): ?>
                     <a href="/account" class="nav-item nav-link">Account</a>
                     <?php endif; ?>
@@ -125,7 +131,7 @@
                             <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>24/7 Service</p>
                         </div>
                     </div>
-                    <a class="btn btn-primary py-3 px-5 mt-2" href="">Read More</a>
+                    <a class="btn btn-primary py-3 px-5 mt-2" href="/about">Read More</a>
                 </div>
             </div>
         </div>
@@ -146,7 +152,12 @@
                         <div class="d-inline-flex align-items-center justify-content-center bg-primary rounded-circle position-absolute top-0 start-50 translate-middle shadow" style="width: 100px; height: 100px;">
                             <i class="fa fa-building fa-3x text-white"></i>
                         </div>
-                        <h5 class="mt-4">Rent Apartment</h5>
+                        <?php if(isset($_SESSION['role'])): ?>
+                        <?php if($_SESSION['role'] == 'TOURIST'): ?>
+                        <h5 class="mt-4"><a href='/apartments'>Rent Apartment</a></h5>
+                        <?php endif; else: $_SESSION['alert'] = "You must login first before you can use this feature." ?>
+                        <h5 class="mt-4"><a href='/login'>Rent Apartment</a></h5>
+                        <?php endif; ?>
                         <hr class="w-25 mx-auto bg-primary mb-1">
                         <hr class="w-50 mx-auto bg-primary mt-0">
                         <p class="mb-0">Tempor erat elitr rebum clita dolor diam ipsum sit diam amet diam eos erat ipsum et lorem et sit sed stet lorem sit</p>
@@ -157,7 +168,12 @@
                         <div class="d-inline-flex align-items-center justify-content-center bg-primary rounded-circle position-absolute top-0 start-50 translate-middle shadow" style="width: 100px; height: 100px;">
                             <i class="fa fa-book fa-3x text-white"></i>
                         </div>
-                        <h5 class="mt-4">Book a Resort</h5>
+                        <?php if(isset($_SESSION['role'])): ?>
+                        <?php if($_SESSION['role'] == 'TOURIST'): ?>
+                        <h5 class="mt-4"><a href='/resorts'>Book a Resort</a></h5>
+                        <?php endif; else: $_SESSION['alert'] = "You must login first before you can use this feature." ?>
+                        <h5 class="mt-4"><a href='/login'>Book a Resort</a></h5>
+                        <?php endif; ?>
                         <hr class="w-25 mx-auto bg-primary mb-1">
                         <hr class="w-50 mx-auto bg-primary mt-0">
                         <p class="mb-0">Tempor erat elitr rebum clita dolor diam ipsum sit diam amet diam eos erat ipsum et lorem et sit sed stet lorem sit</p>
@@ -168,7 +184,12 @@
                         <div class="d-inline-flex align-items-center justify-content-center bg-primary rounded-circle position-absolute top-0 start-50 translate-middle shadow" style="width: 100px; height: 100px;">
                             <i class="fa fa-calendar-alt fa-3x text-white"></i>
                         </div>
-                        <h5 class="mt-4">Book a Spa Appointment</h5>
+                        <?php if(isset($_SESSION['role'])): ?>
+                        <?php if($_SESSION['role'] == 'TOURIST'): ?>
+                        <h5 class="mt-4"><a href='/spa'>Book a Spa Appointment</a></h5>
+                        <?php endif; else: $_SESSION['alert'] = "You must login first before you can use this feature." ?>
+                        <h5 class="mt-4"><a href='/login'>Book a Spa Appointment</a></h5>
+                        <?php endif; ?>
                         <hr class="w-25 mx-auto bg-primary mb-1">
                         <hr class="w-50 mx-auto bg-primary mt-0">
                         <p class="mb-0">Tempor erat elitr rebum clita dolor diam ipsum sit diam amet diam eos erat ipsum et lorem et sit sed stet lorem sit</p>
@@ -224,29 +245,29 @@
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-12 wow fadeInUp" data-wow-delay="0.5s">
-                    <form>
+                    <form action='query' method='post'>
                         <div class="row g-3">
                             <div class="col-md-6">
                                 <div class="form-floating">
-                                    <input type="text" class="form-control" id="name" placeholder="Your Name">
+                                    <input type="text" class="form-control" name="name" placeholder="Your Name">
                                     <label for="name">Your Name</label>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-floating">
-                                    <input type="email" class="form-control" id="email" placeholder="Your Email">
+                                    <input type="email" class="form-control" name="email" placeholder="Your Email">
                                     <label for="email">Your Email</label>
                                 </div>
                             </div>
                             <div class="col-12">
                                 <div class="form-floating">
-                                    <input type="text" class="form-control" id="subject" placeholder="Subject">
+                                    <input type="text" class="form-control" name="subject" placeholder="Subject">
                                     <label for="subject">Subject</label>
                                 </div>
                             </div>
                             <div class="col-12">
                                 <div class="form-floating">
-                                    <textarea class="form-control" placeholder="Leave a message here" id="message" style="height: 100px"></textarea>
+                                    <textarea class="form-control" placeholder="Leave a message here" name="message" style="height: 100px"></textarea>
                                     <label for="message">Message</label>
                                 </div>
                             </div>
@@ -311,10 +332,12 @@
                 <div class="col-lg-3 col-md-6">
                     <h4 class="text-white mb-3">Newsletter</h4>
                     <p>Dolor amet sit justo amet elitr clita ipsum elitr est.</p>
+                    <form action='subscribe' method='post'>
                     <div class="position-relative mx-auto" style="max-width: 400px;">
-                        <input class="form-control border-primary w-100 py-3 ps-4 pe-5" type="text" placeholder="Your email">
-                        <button type="button" class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2">SignUp</button>
+                        <input class="form-control border-primary w-100 py-3 ps-4 pe-5" type="email" name="subs" placeholder="Your email">
+                        <button type="submit" class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2">SignUp</button>
                     </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -357,8 +380,97 @@
     <script src="public/lib/tempusdominus/js/moment-timezone.min.js"></script>
     <script src="public/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
 
+    <!-- AlertJs -->
+    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+
     <!-- Template Javascript -->
     <script src="public/js/main.js"></script>
+
+    <!-- Custom js -->
+    <script>
+        $(document).ready(function(){
+            alertify.defaults = {
+                // dialogs defaults
+                autoReset:true,
+                basic:false,
+                closable:true,
+                closableByDimmer:true,
+                invokeOnCloseOff:false,
+                frameless:false,
+                defaultFocusOff:false,
+                maintainFocus:true, // <== global default not per instance, applies to all dialogs
+                maximizable:true,
+                modal:true,
+                movable:true,
+                moveBounded:false,
+                overflow:true,
+                padding: true,
+                pinnable:true,
+                pinned:true,
+                preventBodyShift:false, // <== global default not per instance, applies to all dialogs
+                resizable:true,
+                startMaximized:false,
+                transition:'pulse',
+                transitionOff:false,
+                tabbable:'button:not(:disabled):not(.ajs-reset),[href]:not(:disabled):not(.ajs-reset),input:not(:disabled):not(.ajs-reset),select:not(:disabled):not(.ajs-reset),textarea:not(:disabled):not(.ajs-reset),[tabindex]:not([tabindex^="-"]):not(:disabled):not(.ajs-reset)',  // <== global default not per instance, applies to all dialogs
+
+                // notifier defaults
+                notifier:{
+                // auto-dismiss wait time (in seconds)  
+                    delay:5,
+                // default position
+                    position:'bottom-right',
+                // adds a close button to notifier messages
+                    closeButton: false,
+                // provides the ability to rename notifier classes
+                    classes : {
+                        base: 'alertify-notifier',
+                        prefix:'ajs-',
+                        message: 'ajs-message',
+                        top: 'ajs-top',
+                        right: 'ajs-right',
+                        bottom: 'ajs-bottom',
+                        left: 'ajs-left',
+                        center: 'ajs-center',
+                        visible: 'ajs-visible',
+                        hidden: 'ajs-hidden',
+                        close: 'ajs-close'
+                    }
+                },
+
+                // language resources 
+                glossary:{
+                    // dialogs default title
+                    title:'Bookease',
+                    // ok button text
+                    ok: 'OK',
+                    // cancel button text
+                    cancel: 'Cancel'            
+                },
+
+                // theme settings
+                theme:{
+                    // class name attached to prompt dialog input textbox.
+                    input:'ajs-input',
+                    // class name attached to ok button
+                    ok:'ajs-ok',
+                    // class name attached to cancel button 
+                    cancel:'ajs-cancel'
+                },
+                // global hooks
+                hooks:{
+                    // invoked before initializing any dialog
+                    preinit:function(instance){},
+                    // invoked after initializing any dialog
+                    postinit:function(instance){},
+                },
+            };
+            
+            <?php if (isset($_SESSION['msg'])): ?>
+                alertify.alert('Note: <?= $_SESSION['msg'] ?>');
+            <?php endif; ?>
+        });
+    </script>
 </body>
 
 </html>

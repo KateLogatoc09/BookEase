@@ -45,21 +45,67 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
 */
 
 //$router->get('/', 'Welcome::index');
+$router->get('/try', 'Main::try');
+
 $router->get('/', 'Main::index');
+$router->get('about', 'Main::about');
+$router->get('book/(:num)', 'Main::book');
+$router->get('appointment/(:num)', 'Main::appointment');
 $router->get('spa', 'Main::spa');
 $router->get('resorts', 'Main::resorts');
 $router->get('apartments', 'Main::apartments');
 $router->get('admin', 'Main::admin');
-$router->get('register', 'Main::register');
+$router->get('admin_register', 'Main::admin_register');
 $router->get('login', 'Main::login');
-$router->get('adminlogin', 'Main::adminlogin');
-$router->match('/auth', 'Authentication::login', 'GET|POST');
-<<<<<<< Updated upstream
-$router->post('/registernew', 'Authentication::register');
-$router->get('/logout', 'Authentication::logout');
-$router->match('/account', 'Tourist_Info::get_userinfo', 'GET|POST');
-=======
-$router->match('/registernew', 'Authentication::register', 'GET|POST');
-$router->get('/logout', 'Authentication::logout');
-$router->match('/account', 'Tourist_Info::get_userinfo', 'GET|POST');
->>>>>>> Stashed changes
+$router->get('register', 'Main::register');
+$router->get('verify', 'Main::verify');
+$router->get('recovery', 'Main::recovery');
+
+$router->post('query', 'Mailing::query');
+$router->post('subscribe', 'Mailing::subscribe');
+
+$router->post('verifying', 'Authentication::verify');
+$router->match('auth', 'Authentication::login', 'GET|POST');
+$router->match('registernew', 'Authentication::register', 'GET|POST');
+$router->get('logout', 'Authentication::logout');
+$router->post('recovering', 'Authentication::recovering');
+$router->post('recover', 'Authentication::recover');
+
+$router->match('account', 'Account_Info::get_userinfo', 'GET|POST');
+$router->match('book_save', 'Account_Info::book', 'GET|POST');
+$router->match('appointment_save', 'Account_Info::appointment', 'GET|POST');
+$router->match('editprofile', 'Account_Info::edit_info', 'GET|POST');
+$router->match('admin_account', 'Account_Info::get_userinfo', 'GET|POST');
+
+$router->get('admin_apartment_manage', 'Apartment::manage');
+$router->get('admin_apartment_reports', 'Apartment::report');
+$router->get('admin_apartment_reservations', 'Apartment::reservation'); 
+$router->get('editroom_ap/(:num)', 'Apartment::edit');
+$router->get('delroom_ap/(:num)', 'Apartment::delete');
+$router->match('managerooms_ap', 'Apartment::save', 'GET|POST');
+$router->get('editres_ap/(:num)', 'Apartment::res');
+$router->match('manageres_ap', 'Apartment::save_res', 'GET|POST');
+
+$router->get('admin_resort_manage', 'resort::manage');
+$router->get('admin_resort_reports', 'resort::report');
+$router->get('admin_resort_reservations', 'resort::reservation'); 
+$router->get('editroom_res/(:num)', 'resort::edit');
+$router->get('delroom_res/(:num)', 'resort::delete');
+$router->match('managerooms_res', 'resort::save', 'GET|POST');
+$router->get('editres_res/(:num)', 'resort::res');
+$router->match('manageres_res', 'resort::save_res', 'GET|POST');
+
+
+$router->get('admin_spa_manage', 'spa::manage');
+$router->get('admin_spa_reports', 'spa::report');
+$router->get('admin_spa_reservations', 'spa::reservation'); 
+$router->get('editservices/(:num)', 'spa::edit');
+$router->get('delservices/(:num)', 'spa::delete');
+$router->match('manageservices', 'spa::save', 'GET|POST');
+$router->get('editappointments/(:num)', 'spa::app');
+$router->match('manageappointments', 'spa::save_app', 'GET|POST');
+
+$router->get('admin_tourists_manage', 'Users::t_manage');
+$router->match('active/(:num)', 'Users::active', 'GET|POST');
+$router->match('ban/(:num)', 'Users::ban', 'GET|POST');
+$router->get('admin_admin_manage', 'Users::a_manage');

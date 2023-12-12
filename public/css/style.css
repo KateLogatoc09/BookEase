@@ -534,7 +534,7 @@
     top: 0;
     background-color: var(--primary);
     width: 100%;
-    z-index: 100000;
+    z-index: 1000;
 }
 
 .cover {
@@ -570,4 +570,22 @@
 .form-floating>.form-control:focus, .form-floating>.form-control:not(:placeholder-shown) {
     padding-top: 1.8250rem !important;
     padding-bottom: .625rem;
+}
+
+/* Developers CSS */
+.hidden {
+    display: none;
+}
+
+.pointer {
+    cursor: pointer;
+}
+.text-center {
+    text-align: center;
+}
+
+.overlay {
+    z-index: 10000;
+    position: absolute;
+    background-color: #14141F;
 }
