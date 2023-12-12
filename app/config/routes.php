@@ -79,6 +79,8 @@ $router->match('appointment_save', 'Account_Info::appointment', 'GET|POST');
 $router->match('editprofile', 'Account_Info::edit_info', 'GET|POST');
 $router->match('admin_account', 'Account_Info::get_userinfo', 'GET|POST');
 
+$router->get('bookings', 'Account_Info::bookings');
+
 $router->get('admin_apartment_manage', 'Apartment::manage');
 $router->get('admin_apartment_reports', 'Apartment::report');
 $router->get('admin_apartment_reservations', 'Apartment::reservation'); 

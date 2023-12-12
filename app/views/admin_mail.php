@@ -59,6 +59,7 @@
 
     <!-- Icons. Uncomment required icon fonts -->
     <link rel="stylesheet" href="<?php echo site_url();?>/public/assets/vendor/fonts/boxicons.css" />
+    <link href="public/css/style.css" rel="stylesheet">
 
     <!-- Core CSS -->
     <link rel="stylesheet" href="<?php echo site_url();?>/public/assets/vendor/css/core.css" class="template-customizer-core-css" />
@@ -379,8 +380,57 @@
 
             <div class="container-xxl flex-grow-1 container-p-y">
               <div class="row">
+      <!-- email temp -->
+        <div class="back3 marg3">
+        <div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
+        <div class="container">
+            <div>
+                <div class="row g-5 align-items-center">
+                <h1 class="text-white mb-4 text-center" id="classy">Send Email</h1>
+                <form>
+                <div class="row g-5 align-items-center">
+                <div class="col-md-6 text-white" id="classy2">
+                        <div class="col-md-12" id="color">
+                                <div class="form-floating">
+                                        <input type="email" class="form-control bg-transparent" id="email" placeholder="Recipient" required>
+                                        <label for="email">Recipient</label>
+                                    </div>
+                                </div>
+                        </div>
+                    <div class="col-md-6" id="classy2">
+                            <div class="row g-3"> 
+                            <div class="col-md-12" id="color">
+                                <div class="form-floating">
+                                        <input type="text" class="form-control bg-transparent" id="subject" placeholder="Subject" required>
+                                        <label for="subject">Subject</label>
+                                    </div>
+                                </div>           
+                            </div>
+                    </div>
+                <div class="col-md-12" id="color">
+                                <div class="form-floating">
+                                        <input type="text" class="form-control bg-transparent" id="message" placeholder="Message" required>
+                                        <label for="message">Message</label>
+                                    </div>
+                                </div>
+                    <div class="col-md-12" id="color">
+                          <div class="form-floating">
+                            <input type="file" accept=".jpg,.png,.jpeg," class="form-control bg-transparent" id="photo" placeholder="Attach A Photo" required>
+                              <label for="photo" class="pad">Attach A Photo</label>
+                            </div>
+                    </div>  
+                    <div class="col-12" id="classy">
+                        <button class="btn btn-outline-light w-50 py-3" type="submit">Send</button>
+                    </div>
+                </div>
+            </form>
+            </div>
+            </div>
+        </div>
+        </div>
+    </div>
 
-              
+                <!-- email temp -->
               </div>
             </div>
             <!-- / Content -->

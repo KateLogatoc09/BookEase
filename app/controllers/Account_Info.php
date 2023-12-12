@@ -680,6 +680,8 @@ class Account_Info extends Controller {
     }
 
     }
-
+    public function bookings() {
+        return $this->call->view('bookings');
+    }
 }
 ?>
