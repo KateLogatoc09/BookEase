@@ -379,7 +379,61 @@
 
             <div class="container-xxl flex-grow-1 container-p-y">
               <div class="row">
+ <!-- Website Traffic -->
+ <div class="card">
 
+<div class="card-body pb-0">
+<h5 class="card-title">Appointments</h5>
+                  <canvas id="barChart" style="max-height: 400px;"></canvas>
+              <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+              <script>
+            // Fetch the PHP data from the view into JavaScript variables
+            const labels = <?php echo $appointments; ?>;
+    const data = <?php echo $services; ?>;
+
+            // Chart configuration
+            const config = {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Appointments',
+                        data: data,
+                        borderWidth: 1,
+                        backgroundColor: [
+                'rgba(255, 99, 132, 0.5)',  
+                'rgba(54, 162, 235, 0.5)', 
+                'rgba(255, 206, 86, 0.5)',
+                'rgba(75, 192, 192, 0.5)', 
+    'rgba(153, 102, 255, 0.5)', 
+    'rgba(255, 159, 64, 0.5)',  
+               
+            ],
+            borderColor: [
+                'rgb(255, 99, 132)',
+                'rgb(54, 162, 235)',
+                'rgb(255, 206, 86)',
+              
+            ],
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            };
+
+          
+            const myChart = new Chart(
+                document.getElementById('barChart'),
+                config
+            );
+        </script>
+                  <!-- Line Chart -->
+                
               
               </div>
             </div>

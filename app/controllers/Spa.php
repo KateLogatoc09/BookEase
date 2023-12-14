@@ -17,7 +17,20 @@ class Spa extends Controller {
     }
 
     public function report() {
-        $this->call->view('admin_spa_report');
+        $bar = $this->spa->bar();
+        $appointments =[];
+        $services =[];
+
+        foreach ($bar as $it){
+            $appointments[] = $it['service_id'];
+            $services[] = $it['service'];
+        }
+        $data = [
+            'appointment' => json_encode($appointments),
+            'service' => json_encode($services),
+        ];
+    
+        $this->call->view('admin_spa_report', $data);
     }
 
     public function reservation() {

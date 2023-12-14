@@ -47,6 +47,14 @@ class Spa_model extends Model {
 
         return $this->db->table('services')->where('id', $id)->update($bind);
     }
+    public function bar() {
+       
+        $data = $this->db->table('appointment')
+                         ->select('service_id, COUNT(id) as service')
+                         ->group_by('service_id')
+                         ->get_all();
+        return $data;
+    }
 
     //appoinment 
     public function appointment() {

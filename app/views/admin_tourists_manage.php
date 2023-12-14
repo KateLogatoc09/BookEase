@@ -510,6 +510,48 @@
                 </div>
               </div>
 
+              <div class="card col-md-12">
+                <div class="table-responsive text-nowrap rounded-3 overflow-y-scroll h-px-500 invisible-scrollbar">
+                  <table class="table table-hover text-center h-px-500">
+                  <caption class="ms-4 position-sticky bottom-0">
+                      List of Cancelled Reservations
+                    </caption>
+                    <thead class="table-custom border-top-0 position-sticky top-0">
+                      <tr>
+                        <th class="text-white">ID</th>
+                        <th class="text-white">Reference</th>
+                        <th class="text-white">Date</th>
+                        <th class="text-white">Action</th>
+                      </tr>
+                    </thead>
+                    <tbody class="table-border-bottom-0">
+     
+                      <tr>
+                        <td>#</td>
+                        <td><strong>#</strong></td>
+                        <td><strong>#</strong></td>
+                          <td>
+                          <div class="dropdown">
+                            <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                              <i class="bx bx-dots-vertical-rounded"></i>
+                            </button>
+                            <div class="dropdown-menu">
+                              <a class="dropdown-item" href="#"
+                                ><i class="bx bx-edit-alt me-1"></i> Reapply</a
+                              >
+                              <a class="dropdown-item" href="#"
+                                ><i class="bx bx-minus me-1"></i> Delete</a
+                              >
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
             </div>
             <!-- / Content -->
 
