@@ -116,8 +116,7 @@
                             <p><h6 class="nobr">Description: </h6><?= $room['description'] ?></p>
                             <p><h6 class="nobr">Price: </h6>&#8369; <?= $room['actual_price'] ?></p>
                             <div class="d-flex justify-content-center mb-2">
-                                <a href="#" class="btn btn-sm btn-primary px-3 border-end" style="border-radius: 30px 0 0 30px;">Read More</a>
-                                <a href="<?=site_url()?>/book/<?=$room['id']?>" class="btn btn-sm btn-primary px-3" style="border-radius: 0 30px 30px 0;">Book Now</a>
+                                <a href="<?=site_url()?>/book/<?=$room['id']?>" class="btn btn-sm btn-primary px-3" style="border-radius: 30px 30px 30px 30px;">Book Now</a>
                             </div>
                         </div>
                     </div>
