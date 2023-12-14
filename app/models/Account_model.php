@@ -192,6 +192,35 @@ class Account_model extends Model {
         return $this->db->table('reservations')->insert($bind);
     }
 
+    public function getres($reference) {
+        return $this->db->table('reservations as res')->select('reference, total, category, name, qty, res.pax as pax, days, check_in, check_out, code, res.status as status, note')->inner_join('room as r', 'res.room_id = r.id')->where('reference',$reference)->get();
+    }
+
+    public function process_res($reference) {
+        $bind = [
+            'status' => 'PROCESSING',
+        ];
+        return $this->db->table('reservations')->where('reference',$reference)->update($bind);
+    }
+
+    public function cancel_res($reference) {
+        $bind = [
+            'status' => 'CANCELLED',
+        ]; 
+        return $this->db->table('reservations')->where('reference',$reference)->update($bind);
+    }
+
+    public function reapply_res($reference) {
+        $bind = [
+            'status' => 'REAPPLIED',
+        ]; 
+        return $this->db->table('reservations')->where('reference',$reference)->update($bind);
+    }
+
+    public function bookings($token) {
+        return $this->db->table('reservations as res')->select('reference, name, res.status as status, check_in, check_out')->inner_join('room as r', 'res.room_id = r.id')->inner_join('user_account as acc', 'res.user_id = acc.id')->where('token',$token)->get_all();
+    }
+
     //appointment
     public function app_save($users, $serv, $date, $time, $reference, $status, $total, $note) {
         $bind = [
@@ -206,5 +235,53 @@ class Account_model extends Model {
         ]; 
         return $this->db->table('appointment')->insert($bind);
     }
+
+    public function getapp($reference) {
+        return $this->db->table('appointment as app')->select('reference, total, name, date ,time, note, code, status')->inner_join('services as serv', 'app.service_id = serv.id')->where('reference',$reference)->get();
+    }
+
+    public function process_app($reference) {
+        $bind = [
+            'status' => 'PROCESSING',
+        ];
+        return $this->db->table('appointment')->where('reference',$reference)->update($bind);
+    }
+
+    public function cancel_app($reference) {
+        $bind = [
+            'status' => 'CANCELLED',
+        ]; 
+        return $this->db->table('appointment')->where('reference',$reference)->update($bind);
+    }
+
+    public function reapply_app($reference) {
+        $bind = [
+            'status' => 'REAPPLIED',
+        ]; 
+        return $this->db->table('appointment')->where('reference',$reference)->update($bind);
+    }
+
+    //payment
+    public function pay($reference, $photo, $downpayment) {
+        $bind = [
+            'reference' => $reference,
+            'photo'=> $photo,
+            'downpayment'=> $downpayment
+        ];
+        return $this->db->table('payment')->insert($bind);
+    }
+
+    public function pay_again($reference, $photo, $downpayment) {
+        $bind = [
+            'photo'=> $photo,
+            'downpayment'=> $downpayment
+        ];
+        return $this->db->table('payment')->where('reference', $reference)->update($bind);
+    }
+
+    public function check_pay($reference) {
+        return $this->db->table('payment')->where('reference', $reference)->get();
+    }
+
 }
 ?>

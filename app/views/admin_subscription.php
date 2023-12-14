@@ -377,104 +377,109 @@
           <!-- Content wrapper -->
           <div class="content-wrapper">
             <!-- Content -->
-
-            <div class="container-xxl flex-grow-1 container-p-y">
-              <div class="row">
-<!-- email temp -->
-<div class="back3 marg3">
-        <div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
-        <div class="container">
-            <div>
-                <div class="row g-5 align-items-center">
-                <h1 class="text-white mb-4 text-center" id="classy">Send Email</h1>
-                <form>
-                <div class="row g-5 align-items-center">
-                <div class="col-md-6 text-white" id="classy2">
-                        <div class="col-md-12" id="color">
-                                <div class="form-floating">
-                                        <input type="email" class="form-control bg-transparent" id="email" placeholder="Recipient" required>
-                                        <label for="email">Recipient</label>
-                                    </div>
-                                </div>
-                        </div>
-                    <div class="col-md-6" id="classy2">
-                            <div class="row g-3"> 
-                            <div class="col-md-12" id="color">
-                                <div class="form-floating">
-                                        <input type="text" class="form-control bg-transparent" id="subject" placeholder="Subject" required>
-                                        <label for="subject">Subject</label>
-                                    </div>
-                                </div>           
-                            </div>
-                    </div>
-                <div class="col-md-12" id="color">
-                                <div class="form-floating">
-                                        <input type="text" class="form-control bg-transparent" id="message" placeholder="Message" required>
-                                        <label for="message">Message</label>
-                                    </div>
-                                </div>
-                    <div class="col-md-12" id="color">
-                          <div class="form-floating">
-                            <input type="file" accept=".jpg,.png,.jpeg," class="form-control bg-transparent" id="photo" placeholder="Attach A Photo" required>
-                              <label for="photo" class="pad">Attach A Photo</label>
-                            </div>
-                    </div>  
-                    <div class="col-12" id="classy">
-                        <button class="btn btn-outline-light w-50 py-3" type="submit">Send</button>
-                    </div>
-                </div>
-            </form>
-            </div>
-            </div>
-        </div>
-        </div>
-    </div>
-                <!-- email temp -->
                 
             <div class="container-xxl flex-grow-1 container-p-y">
               <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Subscription /</span> Manage</h4>
 
-              <div class="card col-md-12">
-                <div class="table-responsive text-nowrap rounded-3 overflow-y-scroll h-px-500 invisible-scrollbar">
-                  <table class="table table-hover text-center h-px-500">
-                  <caption class="ms-4 position-sticky bottom-0">
-                      List of Subscribers
-                    </caption>
-                    <thead class="table-custom border-top-0 position-sticky top-0">
-                      <tr>
-                        <th class="text-white">ID</th>
-                        <th class="text-white">Email</th>
-                        <th class="text-white">Action</th>
-                      </tr>
-                    </thead>
-                    <tbody class="table-border-bottom-0">
-                      <tr>
-                        <td>id num</td>
-                        <td><strong>example@gmail.com</strong></td>
-                        <td>
-                          <div class="dropdown">
-                            <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
-                              <i class="bx bx-dots-vertical-rounded"></i>
-                            </button>
-                            <div class="dropdown-menu">
-                              <a class="dropdown-item" href="#"
-                                ><i class="bx bx-edit-alt me-1"></i> Update</a
-                              >
-                              <a class="dropdown-item" href="#"
-                                ><i class="bx bx-minus me-1"></i> Delete</a
-                              >
-                            </div>
-                          </div>
-                        </td>
-                      </tr>
+              <div class="row">
+                <div class="col-md-6 mb-4">
+                    <div class="card">
+                        <div class="table-responsive text-nowrap rounded-3 overflow-y-scroll h-px-500 invisible-scrollbar">
+                        <table class="table table-hover text-center h-px-500">
+                        <caption class="ms-4 position-sticky bottom-0">
+                            List of Subscribers
+                            </caption>
+                            <thead class="table-custom border-top-0 position-sticky top-0">
+                            <tr>
+                                <th class="text-white">ID</th>
+                                <th class="text-white">Email</th>
+                                <th class="text-white">Status</th>
+                                <th class="text-white">Action</th>
+                            </tr>
+                            </thead>
+                            <tbody class="table-border-bottom-0">
+                            <?php foreach($subscribers as $sub): ?>
+                            <tr>
+                                <td><?=$sub['id']?></td>
+                                <td><strong><?=$sub['email']?></strong></td>
+                                <td><?=$sub['status']?></td>
+                                <td>
+                                <div class="dropdown">
+                                    <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                                    <i class="bx bx-dots-vertical-rounded"></i>
+                                    </button>
+                                    <div class="dropdown-menu">
+                                    <a class="dropdown-item" href="<?=site_url()?>/active/subscriber/<?=$sub['id']?>"
+                                        ><i class="bx bx-edit-alt me-1"></i> Active</a
+                                    >
+                                    <a class="dropdown-item" href="<?=site_url()?>/inactive/subscriber/<?=$sub['id']?>"
+                                        ><i class="bx bx-minus me-1"></i> InActive</a
+                                    >
+                                    </div>
+                                </div>
+                                </td>
+                            </tr>
+                            <?php endforeach;?>
 
-                    </tbody>
-                  </table>
+                            </tbody>
+                        </table>
+                        </div>
+                    </div>
                 </div>
-              </div>
+                
+                <div class="col-md-6">
+                    <div class="card">
+                        <h5 class="card-header">Send Email To All</h5>
+                        <hr class="my-0">
+                        <form action="<?php echo site_url();?>/subscription_email" method="POST" enctype="multipart/form-data">
+                            <div class="card-body d-flex row">
+                                <div class="col-sm-12 col-md-12 d-sm-block d-md-block ps-2">
+                                    <div class="row">
+                                        <div class="mb-2 col-md-12">
+                                            <label for="subject" class="form-label">Subject</label>
+                                            <input
+                                            class="form-control"
+                                            type="text"
+                                            id="subject"
+                                            name="subject"
+                                            autofocus
+                                            required
+                                            />
+                                        </div>
+
+                                        <div class="mb-2 col-md-12">
+                                            <label for="message" class="form-label">Message</label>
+                                            <textarea class="form-control" id="message" name="message" style="resize:none" rows="6" required></textarea>
+                                        </div>
 
 
-              
+
+                                        <p class="text-muted mb-0">Allowed JPG, GIF or PNG.</p>
+
+                                        <div>
+                                            <label for="upload" class="btn btn-primary me-2 mb-2 w-100" tabindex="0">
+                                                <span class="d-sm-block">Upload Attachment <i class="bx bx-upload"></i></span>
+                                                <input
+                                                type="file"
+                                                id="upload"
+                                                class="account-file-input"
+                                                hidden
+                                                accept="image/png, image/jpeg"
+                                                name="photo"
+                                                />
+                                            </label>
+                                        </div>
+
+                                        <div class="mt-2">
+                                        <button type="submit" class="btn btn-primary float-end ms-2">Save changes</button>
+                                        <button type="button" id="clear" onclick="event.preventDefault();" class="btn btn-primary float-end" >Clear</button>
+                                        </div>
+                                    </div>
+                            </div>
+                            </form>
+                    </div>
+                </div>
+
               </div>
             </div>
             <!-- / Content -->
@@ -552,6 +557,18 @@
 
     <!-- Custom Js -->
     <script>
+    //clear
+    const clrbtn = document.getElementById('clear');
+    const subject = document.getElementById('subject');
+    const message = document.getElementById('message');
+
+
+    const clear = function () {
+      subject.value = null;
+      message.value = null;
+    }
+
+    clrbtn.addEventListener("click", clear);
       $(document).ready(function(){
             alertify.defaults = {
                 // dialogs defaults

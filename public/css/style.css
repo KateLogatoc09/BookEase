@@ -573,6 +573,8 @@
 }
 
 /* Developers CSS */
+@import url('https://fonts.googleapis.com/css2?family=Afacad&display=swap');
+
 .hidden {
     display: none;
 }
@@ -584,8 +586,48 @@
     text-align: center;
 }
 
+.div-link {
+    z-index: 1000;
+    position: absolute;
+    background:transparent;
+    width:100%;
+    height:100%;
+    top:0;
+    left: 0;
+}
+
 .overlay {
     z-index: 10000;
     position: absolute;
     background-color: #14141F;
 }
+
+.bg-darkgreen {
+    background-color: var(--secondary);
+}
+
+.bg-booking {
+    background: linear-gradient(rgba(0, 128, 0, 0.7), rgba(0, 128, 0, 0.7)), url(../img/pg.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.afacad-200 {
+    font-family: 'Afacad', sans-serif;
+    font-weight: 200 !important;
+}
+
+.text-white-70 {
+    color: rgba(255, 255, 255, .7);
+}
+
+.text-lightgray {
+    color: lightgray;
+}
+
+.bg-booking:hover {
+    opacity: 0.8;
+}
+
+

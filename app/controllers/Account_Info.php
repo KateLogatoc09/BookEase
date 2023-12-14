@@ -681,7 +681,178 @@ class Account_Info extends Controller {
 
     }
     public function bookings() {
-        return $this->call->view('bookings');
+        $check = $this->users->bookings(sha1($_SESSION['token']));
+        $data = [
+            'bookings' => $check,
+        ];
+        return $this->call->view('bookings', $data);
+    }
+
+    public function payment($reference) {
+        if($this->users->getres($reference)) {
+            $check = $this->users->getres($reference);
+        } else {
+            $check = $this->users->getapp($reference);
+        }
+        $data = [
+            'selected' => $check,
+        ];
+        return $this->call->view('payment', $data);
+    }
+
+    public function booking($reference) {
+        if($this->users->getres($reference)) {
+            $data = [
+                'selbook' => $this->users->getres($reference),
+            ];
+            return $this->call->view('bookings', $data);
+        } else {
+            $data = [
+                'selapp' => $this->users->getapp($reference),
+            ];
+            return $this->call->view('bookings', $data);
+        }
+    }
+
+    public function cancel($reference) {
+        if($this->users->getres($reference)) {
+            $check = $this->users->cancel_res($reference);
+            if($check) {
+                $this->session->set_flashdata('msg','Successfully Cancelled Your Reservation with a reference code:'.$reference.'.');
+                redirect(site_url().'/bookings');
+            } else {
+                $this->session->set_flashdata('msg','Something went wrong. Please try again later.');
+                redirect(site_url().'/bookings');
+            }
+        } else {
+            $check = $this->users->cancel_app($reference);
+            if($check) {
+                $this->session->set_flashdata('msg','Successfully Cancelled Your Appointment with a reference code:'.$reference.'.');
+                redirect(site_url().'/bookings');
+            } else {
+                $this->session->set_flashdata('msg','Something went wrong. Please try again later.');
+                redirect(site_url().'/bookings');
+            }
+        }
+    }
+
+    public function reapply($reference) {
+        if($this->users->getres($reference)) {
+            $check = $this->users->reapply_res($reference);
+            if($check) {
+                $this->session->set_flashdata('msg','Successfully Cancelled Your Reservation with a reference code:'.$reference.'.');
+                redirect(site_url().'/bookings');
+            } else {
+                $this->session->set_flashdata('msg','Something went wrong. Please try again later.');
+                redirect(site_url().'/bookings');
+            }
+        } else {
+            $check = $this->users->reapply_app($reference);
+            if($check) {
+                $this->session->set_flashdata('msg','Successfully Cancelled Your Appointment with a reference code:'.$reference.'.');
+                redirect(site_url().'/bookings');
+            } else {
+                $this->session->set_flashdata('msg','Something went wrong. Please try again later.');
+                redirect(site_url().'/bookings');
+            }
+        }
+    
+    }
+
+    public function pay() {
+        $get = $this->users->Get_Info(sha1($_SESSION['token']));
+        $check = $this->users->check_pay($_POST['reference']);
+
+        if($check) {
+            if($this->users->getres($_POST['reference'])) {
+                $this->call->library('upload', $_FILES['proof']);
+                $this->upload
+                    ->set_dir('public/tourist/'.$get['id'])
+                    ->is_image();
+                if($this->upload->do_upload()) {
+                    $photo = 'public/tourist/'.$get['id'].'/'.$this->upload->get_filename();
+                    $result = $this->users->pay_again($_POST['reference'], $photo, $_POST['downpayment']);
+                    $result2 = $this->users->process_res($_POST['reference']);
+                    if($result && $result2) {
+                        $this->session->set_flashdata('msg', 'Your request is on processed.');
+                        redirect(site_url().'/bookings');
+                    } else {
+                        $this->session->set_flashdata('msg', 'Something went wrong. Please try again later.');
+                        redirect(site_url().'/bookings');
+                        unlink('C:\laragon\www\bookease\\'.$photo);
+                    }
+                } else {
+                    $this->session->set_flashdata('msg', $this->upload->get_errors());
+                    redirect(site_url().'/bookings');
+                }
+            } else {
+                $this->call->library('upload', $_FILES['proof']);
+                $this->upload
+                    ->set_dir('public/tourist/'.$get['id'])
+                    ->is_image();
+                if($this->upload->do_upload()) {
+                    $photo = 'public/tourist/'.$get['id'].'/'.$this->upload->get_filename();
+                    $result = $this->users->pay_again($_POST['reference'], $photo, $_POST['downpayment']);
+                    $result2 = $this->users->process_app($_POST['reference']);
+                    if($result && $result2) {
+                        $this->session->set_flashdata('msg', 'Your request is on processed.');
+                        redirect(site_url().'/bookings');
+                    } else {
+                        $this->session->set_flashdata('msg', 'Something went wrong. Please try again later.');
+                        redirect(site_url().'/bookings');
+                        unlink('C:\laragon\www\bookease\\'.$photo);
+                    }
+                } else {
+                    $this->session->set_flashdata('msg', $this->upload->get_errors());
+                    redirect(site_url().'/bookings');
+                }
+            }
+        
+        } else {
+            if($this->users->getres($_POST['reference'])) {
+                $this->call->library('upload', $_FILES['proof']);
+                $this->upload
+                    ->set_dir('public/tourist/'.$get['id'])
+                    ->is_image();
+                if($this->upload->do_upload()) {
+                    $photo = 'public/tourist/'.$get['id'].'/'.$this->upload->get_filename();
+                    $result1 = $this->users->pay($_POST['reference'], $photo, $_POST['downpayment']);
+                    $result2 = $this->users->process_res($_POST['reference']);
+                    if($result1 && $result2) {
+                        $this->session->set_flashdata('msg', 'Your request is on processed.');
+                        redirect(site_url().'/bookings');
+                    } else {
+                        $this->session->set_flashdata('msg', 'Something went wrong. Please try again later.');
+                        redirect(site_url().'/bookings');
+                        unlink('C:\laragon\www\bookease\\'.$photo);
+                    }
+                } else {
+                    $this->session->set_flashdata('msg', $this->upload->get_errors());
+                    redirect(site_url().'/bookings');
+                }
+            } else {
+                $this->call->library('upload', $_FILES['proof']);
+                $this->upload
+                    ->set_dir('public/tourist/'.$get['id'])
+                    ->is_image();
+                if($this->upload->do_upload()) {
+                    $photo = 'public/tourist/'.$get['id'].'/'.$this->upload->get_filename();
+                    $result1 = $this->users->pay($_POST['reference'], $photo, $_POST['downpayment']);
+                    $result2 = $this->users->process_app($_POST['reference']);
+                    if($result1 && $result2) {
+                        $this->session->set_flashdata('msg', 'Your request is on processed.');
+                        redirect(site_url().'/bookings');
+                    } else {
+                        $this->session->set_flashdata('msg', 'Something went wrong. Please try again later.');
+                        redirect(site_url().'/bookings');
+                        unlink('C:\laragon\www\bookease\\'.$photo);
+                    }
+                } else {
+                    $this->session->set_flashdata('msg', $this->upload->get_errors());
+                    redirect(site_url().'/bookings');
+                }
+            }
+        }
     }
 }
 ?>

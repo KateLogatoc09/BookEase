@@ -12,8 +12,122 @@ class Mailing extends Controller {
         $this->call->view('admin_mail');
     }
 
+    public function send() {
+        ini_set('SMTP', 'mailpit');
+        ini_set('smtp_port', 1025);
+
+        if(!$_FILES['photo']['name']) {
+            $this->email->sender('noreply_bookease@gmail.com', 'Bookease');
+            $this->email->recipient($_POST['recipient']);
+            $this->email->subject($_POST['subject']);
+            $this->email->email_content($_POST['message']);
+
+            $test = $this->email->send();
+            if($test) {
+                $this->session->set_flashdata('msg', 'Email was sent successfully.');
+                redirect(site_url().'/admin_emails_send');
+            } else {
+                $this->session->set_flashdata('msg', 'Something went wrong, Please try again later.');
+                redirect(site_url().'/admin_emails_send');
+            }
+
+        } else {
+            $this->call->library('upload', $_FILES['photo']);
+                $this->upload
+                    ->set_dir('public/mail')
+                    ->is_image();
+                if($this->upload->do_upload()) {
+                    $this->email->sender('noreply_bookease@gmail.com', 'Bookease');
+                    $this->email->recipient($_POST['recipient']);
+                    $this->email->subject($_POST['subject']);
+                    $this->email->email_content($_POST['message']);
+                    $this->email->attachment('public/mail/'.$this->upload->get_filename());
+
+                    $test = $this->email->send();
+                    if($test) {
+                        $this->session->set_flashdata('msg', 'Email was sent successfully.');
+                        redirect(site_url().'/admin_emails_send');
+                    } else {
+                        $this->session->set_flashdata('msg', 'Something went wrong, Please try again later.');
+                        redirect(site_url().'/admin_emails_send');
+                    }
+
+                } else {
+                    $this->session->set_flashdata('msg', $this->upload->get_errors());
+                    redirect(site_url().'/admin_emails_send');
+                }
+        }
+    }
+
     public function subs() {
-        $this->call->view('admin_subscription');
+        $data = [
+            'subscribers'=> $this->mail->list(),
+        ];
+        $this->call->view('admin_subscription', $data);
+    }
+
+    public function subs_send() {
+        ini_set('SMTP', 'mailpit');
+        ini_set('smtp_port', 1025);
+
+        $subscribers = $this->mail->active();
+
+        if(!$_FILES['photo']['name']) {
+            foreach($subscribers as $sub) {
+                $this->email->sender('noreply_bookease@gmail.com', 'Bookease');
+                $this->email->recipient($sub['email']);
+                $this->email->subject($_POST['subject']);
+                $this->email->email_content($_POST['message']);
+
+                $test = $this->email->send();
+            }
+            if($test) {
+                $this->session->set_flashdata('msg', 'Email was sent successfully.');
+                redirect(site_url().'/admin_subscription_subscribers');
+            } else {
+                $this->session->set_flashdata('msg', 'Something went wrong, Please try again later.');
+                redirect(site_url().'/admin_subscription_subscribers');
+            }
+
+        } else {
+            $this->call->library('upload', $_FILES['photo']);
+                $this->upload
+                    ->set_dir('public/mail')
+                    ->is_image();
+                if($this->upload->do_upload()) {
+                    foreach($subscribers as $sub) {
+                        $this->email->sender('noreply_bookease@gmail.com', 'Bookease');
+                        $this->email->recipient($sub['email']);
+                        $this->email->subject($_POST['subject']);
+                        $this->email->email_content($_POST['message']);
+                        $this->email->attachment('public/mail/'.$this->upload->get_filename());
+
+                        $test = $this->email->send();
+                    }
+                    if($test) {
+                        $this->session->set_flashdata('msg', 'Email was sent successfully.');
+                        redirect(site_url().'/admin_subscription_subscribers');
+                    } else {
+                        $this->session->set_flashdata('msg', 'Something went wrong, Please try again later.');
+                        redirect(site_url().'/admin_subscription_subscribers');
+                    }
+
+                } else {
+                    $this->session->set_flashdata('msg', $this->upload->get_errors());
+                    redirect(site_url().'/admin_subscription_subscribers');
+                }
+        }
+    }
+
+    public function update($status, $id) {
+        $check = $this->mail->update($id, $status);
+        if($check) {
+            $this->session->set_flashdata('msg', 'Updated Successfully.');
+            redirect(site_url().'/admin_subscription_subscribers');
+        } else {
+            $this->session->set_flashdata('msg', 'Something went wrong. Please try again later.');
+            redirect(site_url().'/admin_subscription_subscribers');
+        }
     }
 
     public function query() {

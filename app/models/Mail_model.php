@@ -7,8 +7,24 @@ class Mail_model extends Model {
     public function subscription($email) {
         $bind =[
             'email' => $email,
+            'status' => 'ACTIVE',
         ];
         return $this->db->table('subscription')->insert($bind);
+    }
+
+    public function update($id, $status) {
+        $bind =[
+            'status' => strtoupper($status),
+        ];
+        return $this->db->table('subscription')->where('id', $id)->update($bind);
+    }
+
+    public function list() {
+        return $this->db->table('subscription')->get_all();
+    }
+
+    public function active() {
+        return $this->db->table('subscription')->where('status', 'ACTIVE')->get_all();
     }
 
     public function check($email) {

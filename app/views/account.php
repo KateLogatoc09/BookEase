@@ -77,7 +77,6 @@
                     <a href="/about" class="nav-item nav-link">About</a>
                     <?php if(isset($_SESSION['token'])): ?>
                     <a href="/account" class="nav-item nav-link active">Account</a>
-                    <a href="/bookings" class="nav-item nav-link">Bookings</a>
                     <?php endif; ?>
                     <a href="/spa" class="nav-item nav-link">Spa</a>
                     <a href="/resorts" class="nav-item nav-link">Resort</a>
@@ -103,6 +102,7 @@
                                 <li class="breadcrumb-item"><a href="#">Home</a></li>
                                 <li class="breadcrumb-item"><a href="#">Pages</a></li>
                                 <li class="breadcrumb-item text-white active" aria-current="page">Account</li>
+                                <li class="breadcrumb-item"><a href="bookings">Bookings</a></li>
                             </ol>
                         </nav>
                     </div>

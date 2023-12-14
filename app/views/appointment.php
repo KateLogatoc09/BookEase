@@ -96,31 +96,10 @@
                 <?php endif; ?>
             </div>
         </nav>
-
-        <div class="container-fluid bg-primary py-5 mb-5 hero-header cover">
-            <div class="container py-5">
-                <div class="row justify-content-center py-5">
-                    <div class="col-lg-10 pt-lg-5 mt-lg-5 text-center">
-                        <h1 class="display-3 text-white animated slideInDown">Appointment</h1>
-                        <nav aria-label="breadcrumb">
-                            <ol class="breadcrumb justify-content-center">
-                                <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                <li class="breadcrumb-item"><a href="#">Pages</a></li>
-                                <li class="breadcrumb-item text-white active" aria-current="page">Appointment</li>
-                            </ol>
-                        </nav>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
     <!-- Navbar & Hero End -->
-    <!-- Rooms End -->
-    <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-                <h6 class="section-title bg-white text-center text-primary px-3">Services</h6>
-                <h1 >Appointment</h1>
-            </div>
-         <!-- Booking Start -->
+
+         <!-- Appointment Start -->
          <div class="back">
         <div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
         <div class="container">
@@ -130,7 +109,7 @@
                 <div class="row g-5 align-items-center">
                     <div class="col-md-6 text-white" id="classy2">
                         <div class="row g-3">
-                            <h1 class="text-white mb-4 text-center" id="classy">Appointment Details</h1><br>
+                            <h2 class="text-white mb-4 text-center" id="classy">Appointment Details</h2><br>
                             <h4 class="text-white mb-4 text-center" id="classy2">Service' Applied: <span class="green" id="classy2"><?php if(isset($selected['name'])): echo $selected['name']; endif; ?></span></h4>
                             <input type="hidden" value="<?php if(isset($selected['id'])): echo $selected['id']; endif; ?>" name="service_id"/>
                             <h4 class="text-white mb-4 text-center" id="classy2">Description: <span class="green" id="classy2"><?php if(isset($selected['description'])): echo $selected['description']; endif; ?></span></h4>
@@ -139,7 +118,6 @@
                         </div>
                     </div>
                     <div class="col-md-6">
-                        <h2 class="text-white mb-4 text-center" id="classy">Enter Details</h2>
                             <div class="row g-3">
 
                                 <div class="col-md-12" id="color">
@@ -149,7 +127,7 @@
                                     </div>
                                 </div>
 
-                                <div class="col-md-12 my-4" id="color">
+                                <div class="col-md-12" id="color">
                                     <div class="form-floating">
                                         <select id="time" class="form-select bg-transparent" name="time" required>
                                             <option>Choose a time</option>
@@ -160,7 +138,7 @@
                                 
                                 <div class="col-md-12" id="color">
                                     <div class="form-floating">
-                                        <input type="text" class="form-control bg-transparent" id="instructions" placeholder="Specisl Instructions" name="note" required>
+                                        <input type="text" class="form-control bg-transparent" id="instructions" placeholder="Specisl Instructions" name="note">
                                         <label for="instructions">Special Instructions</label>
                                     </div>
                                 </div>

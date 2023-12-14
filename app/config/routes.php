@@ -64,7 +64,11 @@ $router->get('recovery', 'Main::recovery');
 $router->post('query', 'Mailing::query');
 $router->post('subscribe', 'Mailing::subscribe');
 $router->get('admin_emails_send', 'Mailing::email');
+$router->post('send_an_email', 'Mailing::send');
 $router->get('admin_subscription_subscribers', 'Mailing::subs');
+$router->post('subscription_email', 'Mailing::subs_send');
+$router->match('(:any)/subscriber/(:num)', 'Mailing::update', 'GET|POST');
+$router->match('(:any)/subscriber/(:num)', 'Mailing::update', 'GET|POST');
 
 $router->post('verifying', 'Authentication::verify');
 $router->match('auth', 'Authentication::login', 'GET|POST');
@@ -74,12 +78,17 @@ $router->post('recovering', 'Authentication::recovering');
 $router->post('recover', 'Authentication::recover');
 
 $router->match('account', 'Account_Info::get_userinfo', 'GET|POST');
+$router->get('bookings', 'Account_Info::bookings');
+$router->get('booking/(:any)', 'Account_Info::booking');
+$router->get('booking/cancelled/(:any)', 'Account_Info::cancel');
+$router->get('booking/reapplied/(:any)', 'Account_Info::reapply');
+$router->get('payment/(:any)', 'Account_Info::payment');
+$router->get('pay', 'Account_Info::pay');
 $router->match('book_save', 'Account_Info::book', 'GET|POST');
 $router->match('appointment_save', 'Account_Info::appointment', 'GET|POST');
 $router->match('editprofile', 'Account_Info::edit_info', 'GET|POST');
 $router->match('admin_account', 'Account_Info::get_userinfo', 'GET|POST');
 
-$router->get('bookings', 'Account_Info::bookings');
 
 $router->get('admin_apartment_manage', 'Apartment::manage');
 $router->get('admin_apartment_reports', 'Apartment::report');

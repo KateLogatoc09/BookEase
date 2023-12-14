@@ -24,7 +24,7 @@
     <meta content="" name="description">
 
     <!-- Favicon -->
-    <link href="public/img/favicon.ico" rel="icon">
+    <link href="<?= site_url(); ?>/public/img/favicon.ico" rel="icon">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -36,15 +36,15 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
 
     <!-- Libraries Stylesheet -->
-    <link href="public/lib/animate/animate.min.css" rel="stylesheet">
-    <link href="public/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-    <link href="public/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+    <link href="<?= site_url();?>/public/lib/animate/animate.min.css" rel="stylesheet">
+    <link href="<?= site_url();?>/public/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="<?= site_url();?>/public/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
 
     <!-- Customized Bootstrap Stylesheet -->
-    <link href="public/css/bootstrap.min.css" rel="stylesheet">
+    <link href="<?= site_url(); ?>/public/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Template Stylesheet -->
-    <link href="public/css/style.css" rel="stylesheet">
+    <link href="<?= site_url(); ?>/public/css/style.css" rel="stylesheet">
 
     <!-- AlertJs -->
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
@@ -69,8 +69,7 @@
                     <a href="/" class="nav-item nav-link">Home</a>
                     <a href="/about" class="nav-item nav-link">About</a>
                     <?php if(isset($_SESSION['token'])): ?>
-                    <a href="/account" class="nav-item nav-link">Account</a>
-                    <a href="/bookings" class="nav-item nav-link active">Bookings</a>
+                    <a href="/account" class="nav-item nav-link active">Account</a>
                     <?php endif; ?>
                     <a href="/spa" class="nav-item nav-link">Spa</a>
                     <a href="/resorts" class="nav-item nav-link">Resort</a>
@@ -90,11 +89,12 @@
             <div class="container py-5">
                 <div class="row justify-content-center py-5">
                     <div class="col-lg-10 pt-lg-5 mt-lg-5 text-center">
-                        <h1 class="display-3 text-white animated slideInDown">Bookings</h1>
+                        <h1 class="display-3 text-white animated slideInDown">Account Settings</h1>
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb justify-content-center">
-                                <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                <li class="breadcrumb-item"><a href="#">Pages</a></li>
+                                <li class="breadcrumb-item"><a href="">Home</a></li>
+                                <li class="breadcrumb-item"><a href="">Pages</a></li>
+                                <li class="breadcrumb-item"><a href="account">Account</a></li>
                                 <li class="breadcrumb-item text-white active" aria-current="page">Bookings</li>
                             </ol>
                         </nav>
@@ -105,22 +105,150 @@
     </div>
     <!-- Navbar & Hero End -->
 
-<!-- Contact Start -->
-<div class="container-xxl py-5">
+<?php if(!isset($selbook) && !isset($selapp)): ?>
+    <!-- Booking Start -->
+    <div class="container-xxl py-5">
         <div class="container">
             <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
                 <h6 class="section-title bg-white text-center secondary-text px-3">Booking Transactions</h6>
-                <h1 class="mb-5">Bookings</h1>
+                <h1 class="mb-4">Bookings</h1>
             </div>
+
+            <?php if(isset($bookings)): ?>
+            <div class="row g-1">
+                <div class="wow fadeInUp" data-wow-delay="0.1s">
+                    <?php foreach($bookings as $book): ?>
+                    <a href="<?=site_url()?>/booking/<?=$book['reference'];?>">
+                    <div class="mb-4 w-100 bg-booking row" style="height:150px;">
+                        <div class="col-md-4 col-lg-4 p-3 bg-darkgreen overflow-hidden h-100">
+                            <h4 class="text-white afacad-200">Reference Code:</h4>
+                            <hr class="bg-light">
+                            <h4 class="text-primary secondary-text text-md-end"><?=$book['reference']?></h4>
+                        </div>
+
+                        <div class="col-md-4 col-lg-4 p-3 p-3 h-100" style="height:100%">
+                            <div class="col-md-12">
+                            <h6 class="text-white afacad-200">Check-in:</h6>
+                            <h5 class="text-white-70 secondary-text"><?=$book['check_in']?></h5>
+                            </div>
+                            <div class="col-md-12">
+                            <h6 class="text-white afacad-200">Check-out:</h6   >
+                            <h5 class="text-white-70 secondary-text"><?=$book['check_out']?></h5>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 col-lg-4 p-3 p-3 h-100" style="height:100%">
+                            <div class="col-md-12">
+                            <h6 class="text-white afacad-200">Room:</h6>
+                            <h5 class="text-white-70 secondary-text"><?=$book['name']?></h5>
+                            </div>
+                            <div class="col-md-12">
+                            <h6 class="text-white afacad-200">Booking Status:</h6   >
+                            <h5 class="text-white-70 secondary-text"><?=$book['status']?></h5>
+                            </div>
+                        </div>
+                    </div>
+                    </a>
+                    <?php endforeach; ?>
+                </div>
+            </div>
+            <?php else: ?>
+            <div class="row g-1">
+                <div class="text-center wow fadeInUp d-flex align-items-center justify-content-center" style="height:400px" data-wow-delay="0.1s">
+                    <h1 class="text-lightgray">&#10077; No Records Found &#10078;</h1>
+                </div>
+            </div>
+            <?php endif; ?>
+        </div>
+    </div>
+    <!-- Booking End -->
+
+    <!-- Appointment Start -->
+    <div class="container-xxl py-5">
+        <div class="container">
+            <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+                <h6 class="section-title bg-white text-center secondary-text px-3">Appointment Transactions</h6>
+                <h1 class="mb-5">Appointments</h1>
+            </div>
+
+            <?php if(isset($appointments)): ?>
+            <div class="row g-1">
+                <div class="wow fadeInUp" data-wow-delay="0.1s">
+                    <?php foreach($appointments as $app): ?>
+                    <a href="<?=site_url()?>/booking/<?=$app['reference'];?>" class="pointer">
+                    <div class="mb-4 w-100 bg-booking row position-relative" style="height:150px;">
+                        <div class="col-md-4 col-lg-4 p-3 bg-darkgreen overflow-hidden h-100">
+                            <h4 class="text-white afacad-200">Reference Code:</h4>
+                            <hr class="bg-light">
+                            <h4 class="text-primary secondary-text text-md-end"><?=$app['reference']?></h4>
+                        </div>
+
+                        <div class="col-md-4 col-lg-4 p-3 p-3 h-100" style="height:100%">
+                            <div class="col-md-12">
+                            <h6 class="text-white afacad-200">Date:</h6>
+                            <h5 class="text-white-70 secondary-text"><?=$app['date']?></h5>
+                            </div>
+                            <div class="col-md-12">
+                            <h6 class="text-white afacad-200">Time:</h6   >
+                            <h5 class="text-white-70 secondary-text"><?=$app['time']?></h5>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 col-lg-4 p-3 p-3 h-100" style="height:100%">
+                            <div class="col-md-12">
+                            <h6 class="text-white afacad-200">Service' Applied:</h6>
+                            <h5 class="text-white-70 secondary-text"><?=$app['name']?></h5>
+                            </div>
+                            <div class="col-md-12">
+                            <h6 class="text-white afacad-200">Appointment Status:</h6   >
+                            <h5 class="text-white-70 secondary-text"><?=$app['status']?></h5>
+                            </div>
+                        </div>
+                    </div>
+                    </a>
+                    <?php endforeach; ?>
+                </div>
+            </div>
+            <?php else: ?>
+            <div class="row g-1">
+                <div class="text-center wow fadeInUp d-flex align-items-center justify-content-center" style="height:400px" data-wow-delay="0.1s">
+                    <h1 class="text-lightgray">&#10077; No Records Found &#10078;</h1>
+                </div>
+            </div>
+            <?php endif; ?>
+
+        </div>
+    </div>
+    <!-- Appointment End -->
+
+    <?php elseif(isset($selbook)): ?>
+
+    <!-- Booking Start -->
+    <div class="container-xxl py-5">
+        <div class="container">
+            <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+                <h6 class="section-title bg-white text-center secondary-text px-3">Booking Transactions</h6>
+                <h1 class="mb-4">Bookings</h1>
+            </div>
+        
             <div class="row g-4"  id="classy2">
-                <div class="col-lg-14 col-md-5 wow fadeInUp book" data-wow-delay="0.1s" id="space3"> 
-                <div class="d-flex align-items-center mb-4">
+                <div class="col-lg-14 col-md-6 wow fadeInUp book" data-wow-delay="0.1s" id="space3">
+                    <div class="d-flex align-items-center mb-4">
+                        <div class="d-flex align-items-center justify-content-center flex-shrink-0 main-btn" style="width: 50px; height: 50px;">
+                            <i class="fa fa-building text-white"></i>
+                        </div>
+                        <div class="ms-3">
+                            <h5 class="secondary-text">Place</h5>
+                            <p class="mb-0"><?php if($selbook['category'] == 'APARTMENT'): ?>Squares Beach Front Apartments<?php else: ?>Simon's Heritage Resort<?php endif;?></p>
+                        </div>
+                    </div>          
+                    <div class="d-flex align-items-center mb-4">
                         <div class="d-flex align-items-center justify-content-center flex-shrink-0 main-btn" style="width: 50px; height: 50px;">
                             <i class="fa fa-building text-white"></i>
                         </div>
                         <div class="ms-3">
                             <h5 class="secondary-text">Room</h5>
-                            <p class="mb-0">Room</p>
+                            <p class="mb-0"><?= $selbook['name'] ?></p>
                         </div>
                     </div>
                     <div class="d-flex align-items-center mb-4" id="space2">
@@ -129,7 +257,7 @@
                         </div>
                         <div class="ms-3">
                             <h5 class="secondary-text">Quantity</h5>
-                            <p class="mb-0">Quantity</p>
+                            <p class="mb-0"><?= $selbook['qty'] ?></p>
                         </div>
                     </div>
                     <div class="d-flex align-items-center">
@@ -138,7 +266,7 @@
                         </div>
                         <div class="ms-3">
                             <h5 class="secondary-text">Pax</h5>
-                            <p class="mb-0">Pax</p>
+                            <p class="mb-0"><?= $selbook['pax'] ?></p>
                         </div>
                     </div>
                     <div class="d-flex align-items-center mb-4" id="space2">
@@ -147,7 +275,7 @@
                         </div>
                         <div class="ms-3">
                             <h5 class="secondary-text">Number of Days</h5>
-                            <p class="mb-0">Days</p>
+                            <p class="mb-0"><?= $selbook['days'] ?></p>
                         </div>
                     </div>
                     <div class="d-flex align-items-center mb-4" id="space2">
@@ -156,19 +284,19 @@
                         </div>
                         <div class="ms-3">
                             <h5 class="secondary-text">Price</h5>
-                            <p class="mb-0">Price</p>
+                            <p class="mb-0"><?= $selbook['total'] ?></p>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-lg-14 col-md-5 wow fadeInUp book" data-wow-delay="0.1s" id="space3"> 
+                <div class="col-lg-14 col-md-6 wow fadeInUp book" data-wow-delay="0.1s" id="space3"> 
                 <div class="d-flex align-items-center mb-4">
                         <div class="d-flex align-items-center justify-content-center flex-shrink-0 main-btn" style="width: 50px; height: 50px;">
                             <i class="fa fa-calendar-alt text-white"></i>
                         </div>
                         <div class="ms-3">
                             <h5 class="secondary-text">Check In Date</h5>
-                            <p class="mb-0">Date</p>
+                            <p class="mb-0"><?= $selbook['check_in'] ?></p>
                         </div>
                     </div>
                     <div class="d-flex align-items-center mb-4" id="space2">
@@ -177,7 +305,7 @@
                         </div>
                         <div class="ms-3">
                             <h5 class="secondary-text">Check Out Date</h5>
-                            <p class="mb-0">Date</p>
+                            <p class="mb-0"><?= $selbook['check_out'] ?></p>
                         </div>
                     </div>
                         <div class="d-flex align-items-center mb-4" id="space2">
@@ -186,7 +314,7 @@
                         </div>
                         <div class="ms-3">
                             <h5 class="secondary-text">Instructions</h5>
-                            <p class="mb-0">Note</p>
+                            <p class="mb-0"><?= $selbook['note'] ?></p>
                         </div>
                     </div>
                     <div class="d-flex align-items-center mb-4" id="space2">
@@ -195,7 +323,16 @@
                         </div>
                         <div class="ms-3">
                             <h5 class="secondary-text">Reference</h5>
-                            <p class="mb-0">Reference</p>
+                            <p class="mb-0"><?= $selbook['reference'] ?></p>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center mb-4" id="space2">
+                        <div class="d-flex align-items-center justify-content-center flex-shrink-0 main-btn" style="width: 50px; height: 50px;">
+                            <i class="fa fa-book text-white"></i>
+                        </div>
+                        <div class="ms-3">
+                            <h5 class="secondary-text">Booking Code</h5>
+                            <p class="mb-0"><?= $selbook['code'] ?></p>
                         </div>
                     </div>
                     <div class="d-flex align-items-center mb-4" id="space2">
@@ -204,19 +341,34 @@
                         </div>
                         <div class="ms-3">
                             <h5 class="secondary-text">Booking Status</h5>
-                            <p class="mb-0">Pending</p>
+                            <p class="mb-0"><?= $selbook['status'] ?></p>
                         </div>
                     </div>
-                </div>
+                    <?php if($selbook['status'] == 'APPLIED' || $selbook['status'] == 'REAPPLIED'): ?>
+                    <a class="btn bg-darkgreen w-50 text-white py-3 px-5 mt-2" href="<?= site_url()?>/payment/<?=$selbook['reference']?>">Pay</a>
+                    <a class="btn bg-darkgreen w-50 text-white py-3 px-5 mt-2" href="<?= site_url()?>/booking/cancelled/<?=$selbook['reference']?>">Cancel</a>
+                    <?php endif; ?>
+                    <?php if($selbook['status'] == 'PAYMENT FAILED'): ?>
+                    <a class="btn bg-darkgreen w-50 text-white py-3 px-5 mt-2" href="<?= site_url()?>/booking/reapplied/<?=$selbook['reference']?>">Reapply</a>
+                    <a class="btn bg-darkgreen w-50 text-white py-3 px-5 mt-2" href="<?= site_url()?>/booking/cancelled/<?=$selbook['reference']?>">Cancel</a>
+                    <?php endif; ?>
+                    <?php if($selbook['status'] == 'ACCEPTED'): ?>
+                    <a class="btn bg-darkgreen w-50 text-white py-3 px-5 mt-2" href="<?= site_url()?>/booking/cancelled/<?=$selbook['reference']?>">Cancel</a>
+                    <?php endif; ?>
+                    <?php if($selbook['status'] == 'PROCESSING'): ?>
+                    <a class="btn bg-darkgreen w-50 text-white py-3 px-5 mt-2" href="<?= site_url()?>/booking/cancelled/<?=$selbook['reference']?>">Cancel</a>
+                    <?php endif; ?>
 
+                </div>
             </div>
         </div>
     </div>
-    <!-- Contact End -->
+    <!-- Booking End -->
 
-      
-<!-- Contact Start -->
-<div class="container-xxl py-5">
+    <?php else: ?>
+
+    <!-- Appointment Start -->
+    <div class="container-xxl py-5">
         <div class="container">
             <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
                 <h6 class="section-title bg-white text-center secondary-text px-3">Appointment Transactions</h6>
@@ -230,7 +382,7 @@
                         </div>
                         <div class="ms-3">
                             <h5 class="secondary-text">Service</h5>
-                            <p class="mb-0">Service</p>
+                            <p class="mb-0"><?= $selapp['name'] ?></p>
                         </div>
                     </div>
                     <div class="d-flex align-items-center mb-4" id="space2">
@@ -239,7 +391,7 @@
                         </div>
                         <div class="ms-3">
                             <h5 class="secondary-text">Date</h5>
-                            <p class="mb-0">Date</p>
+                            <p class="mb-0"><?= $selapp['date'] ?></p>
                         </div>
                     </div>
                     <div class="d-flex align-items-center mb-4" id="space2">
@@ -248,7 +400,7 @@
                         </div>
                         <div class="ms-3">
                             <h5 class="secondary-text">Time</h5>
-                            <p class="mb-0">Time</p>
+                            <p class="mb-0"><?= $selapp['time'] ?></p>
                         </div>
                     </div>
                     <div class="d-flex align-items-center mb-4" id="space2">
@@ -257,7 +409,7 @@
                         </div>
                         <div class="ms-3">
                             <h5 class="secondary-text">Price</h5>
-                            <p class="mb-0">Price</p>
+                            <p class="mb-0"><?= $selapp['total'] ?></p>
                         </div>
                     </div>
                 </div>
@@ -269,7 +421,7 @@
                         </div>
                         <div class="ms-3">
                             <h5 class="secondary-text">Instructions</h5>
-                            <p class="mb-0">Note</p>
+                            <p class="mb-0"><?= $selapp['note'] ?></p>
                         </div>
                     </div>
                     <div class="d-flex align-items-center mb-4" id="space2">
@@ -278,7 +430,16 @@
                         </div>
                         <div class="ms-3">
                             <h5 class="secondary-text">Reference</h5>
-                            <p class="mb-0">Reference</p>
+                            <p class="mb-0"><?= $selapp['reference'] ?></p>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center mb-4" id="space2">
+                        <div class="d-flex align-items-center justify-content-center flex-shrink-0 main-btn" style="width: 50px; height: 50px;">
+                            <i class="fa fa-book text-white"></i>
+                        </div>
+                        <div class="ms-3">
+                            <h5 class="secondary-text">Appointment Code</h5>
+                            <p class="mb-0"><?= $selapp['code'] ?></p>
                         </div>
                     </div>
                     <div class="d-flex align-items-center mb-4" id="space2">
@@ -287,69 +448,31 @@
                         </div>
                         <div class="ms-3">
                             <h5 class="secondary-text">Booking Status</h5>
-                            <p class="mb-0">Pending</p>
+                            <p class="mb-0"><?= $selapp['status'] ?></p>
                         </div>
                     </div>
+
+                    <?php if($selapp['status'] == 'APPLIED' || $selapp['status'] == 'REAPPLIED'): ?>
+                    <a class="btn bg-darkgreen w-50 text-white py-3 px-5 mt-2" href="<?= site_url()?>/payment/<?=$selapp['reference']?>">Pay</a>
+                    <a class="btn bg-darkgreen w-50 text-white py-3 px-5 mt-2" href="<?= site_url()?>/booking/cancelled/<?=$selapp['reference']?>">Cancel</a>
+                    <?php endif; ?>
+                    <?php if($selapp['status'] == 'PAYMENT FAILED'): ?>
+                    <a class="btn bg-darkgreen w-50 text-white py-3 px-5 mt-2" href="<?= site_url()?>/booking/reapplied/<?=$selapp['reference']?>">Reapply</a>
+                    <a class="btn bg-darkgreen w-50 text-white py-3 px-5 mt-2" href="<?= site_url()?>/booking/cancelled/<?=$selapp['reference']?>">Cancel</a>
+                    <?php endif; ?>
+                    <?php if($selapp['status'] == 'ACCEPTED'): ?>
+                    <a class="btn bg-darkgreen w-50 text-white py-3 px-5 mt-2" href="<?= site_url()?>/booking/cancelled/<?=$selapp['reference']?>">Cancel</a>
+                    <?php endif; ?>
+                    <?php if($selapp['status'] == 'PROCESSING'): ?>
+                    <a class="btn bg-darkgreen w-50 text-white py-3 px-5 mt-2" href="<?= site_url()?>/booking/cancelled/<?=$selapp['reference']?>">Cancel</a>
+                    <?php endif; ?>
                 </div>
 
             </div>
         </div>
     </div>
-    <!-- Contact End -->
-
-    
-        <!-- Add Amenities Start -->
-        <div class="back marg3">
-        <div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
-        <div class="container">
-            <div>
-                <div class="row g-5 align-items-center">
-                <h1 class="text-white mb-4 text-center" id="classy">Payment</h1>
-                <form>
-                <div class="row g-5 align-items-center">
-                    <div class="col-md-6 text-white" id="classy2">
-                        <div class="row g-3">
-                            <div class="col-md-12" id="color">
-                                    <div class="form-floating">
-                                        <input type="text" class="form-control bg-transparent" id="ref" placeholder="Reference" required>
-                                        <label for="ref">Reference</label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    <div class="col-md-6" id="classy2">
-                            <div class="row g-3"> 
-                                <div class="col-md-12" id="color">
-                                    <div class="form-floating">
-                                        <input type="number" class="form-control bg-transparent" id="pay" placeholder="Down Payment" required>
-                                        <label for="pay">Down Payment</label>
-                                    </div>
-                                </div>               
-                            </div>
-                    </div>
-                    <div class="col-md-12" id="color">
-                                    <div class="form-floating">
-                                        <input type="file" accept=".jpg,.png,.jpeg," class="form-control bg-transparent" id="photo" placeholder="Upload photo of down payment" required>
-                                        <label for="photo">Upload The Photo of Down Payment</label>
-                                    </div>
-                                </div>  
-                    <div class="col-12" id="classy">
-                        <button class="btn btn-outline-light w-50 py-3" type="submit">Save Amenity</button>
-                    </div>
-                    <div class="col-12" id="classy">
-                        <button class="btn btn-outline-light w-50 py-3" type="submit">Go Back</button>
-                    </div>
-                </div>
-            </form>
-            </div>
-            </div>
-        </div>
-        </div>
-    </div>
-    <!-- Add Amennities End -->
-
-
-
+    <!-- Appointment End -->
+<?php endif;?>
 
     <!-- Footer Start -->
     <div class="container-fluid bg-dark text-light footer pt-5 mt-5 wow fadeIn" data-wow-delay="0.1s">
@@ -379,22 +502,22 @@
                     <h4 class="text-white mb-3">Gallery</h4>
                     <div class="row g-2 pt-2">
                         <div class="col-4">
-                            <img class="img-fluid bg-light p-1" src="public/img/package-1.jpg" alt="">
+                            <img class="img-fluid bg-light p-1" src="<?= site_url(); ?>/public/img/package-1.jpg" alt="">
                         </div>
                         <div class="col-4">
-                            <img class="img-fluid bg-light p-1" src="public/img/package-2.jpg" alt="">
+                            <img class="img-fluid bg-light p-1" src="<?= site_url(); ?>/public/img/package-2.jpg" alt="">
                         </div>
                         <div class="col-4">
-                            <img class="img-fluid bg-light p-1" src="public/img/package-3.jpg" alt="">
+                            <img class="img-fluid bg-light p-1" src="<?= site_url(); ?>/public/img/package-3.jpg" alt="">
                         </div>
                         <div class="col-4">
-                            <img class="img-fluid bg-light p-1" src="public/img/package-2.jpg" alt="">
+                            <img class="img-fluid bg-light p-1" src="<?= site_url(); ?>/public/img/package-2.jpg" alt="">
                         </div>
                         <div class="col-4">
-                            <img class="img-fluid bg-light p-1" src="public/img/package-3.jpg" alt="">
+                            <img class="img-fluid bg-light p-1" src="<?= site_url(); ?>/public/img/package-3.jpg" alt="">
                         </div>
                         <div class="col-4">
-                            <img class="img-fluid bg-light p-1" src="public/img/package-1.jpg" alt="">
+                            <img class="img-fluid bg-light p-1" src="<?= site_url(); ?>/public/img/package-1.jpg" alt="">
                         </div>
                     </div>
                 </div>
@@ -441,18 +564,103 @@
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="public/lib/wow/wow.min.js"></script>
-    <script src="public/lib/easing/easing.min.js"></script>
-    <script src="public/lib/waypoints/waypoints.min.js"></script>
-    <script src="public/lib/owlcarousel/owl.carousel.min.js"></script>
-    <script src="public/lib/tempusdominus/js/moment.min.js"></script>
-    <script src="public/lib/tempusdominus/js/moment-timezone.min.js"></script>
-    <script src="public/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+    <script src="<?= site_url();?>/public/lib/wow/wow.min.js"></script>
+    <script src="<?= site_url();?>/public/lib/easing/easing.min.js"></script>
+    <script src="<?= site_url();?>/public/lib/waypoints/waypoints.min.js"></script>
+    <script src="<?= site_url();?>/public/lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="<?= site_url();?>/public/lib/tempusdominus/js/moment.min.js"></script>
+    <script src="<?= site_url();?>/public/lib/tempusdominus/js/moment-timezone.min.js"></script>
+    <script src="<?= site_url();?>/public/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
 
     <!-- AlertJs -->
     <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
 
     <!-- Template Javascript -->
-    <script src="public/js/main.js"></script>
+    <script src="<?= site_url();?>/public/js/main.js"></script>
+
+    <script>
+        $(document).ready(function(){
+            alertify.defaults = {
+                // dialogs defaults
+                autoReset:true,
+                basic:false,
+                closable:true,
+                closableByDimmer:true,
+                invokeOnCloseOff:false,
+                frameless:false,
+                defaultFocusOff:false,
+                maintainFocus:true, // <== global default not per instance, applies to all dialogs
+                maximizable:true,
+                modal:true,
+                movable:true,
+                moveBounded:false,
+                overflow:true,
+                padding: true,
+                pinnable:true,
+                pinned:true,
+                preventBodyShift:false, // <== global default not per instance, applies to all dialogs
+                resizable:true,
+                startMaximized:false,
+                transition:'pulse',
+                transitionOff:false,
+                tabbable:'button:not(:disabled):not(.ajs-reset),[href]:not(:disabled):not(.ajs-reset),input:not(:disabled):not(.ajs-reset),select:not(:disabled):not(.ajs-reset),textarea:not(:disabled):not(.ajs-reset),[tabindex]:not([tabindex^="-"]):not(:disabled):not(.ajs-reset)',  // <== global default not per instance, applies to all dialogs
+
+                // notifier defaults
+                notifier:{
+                // auto-dismiss wait time (in seconds)  
+                    delay:5,
+                // default position
+                    position:'bottom-right',
+                // adds a close button to notifier messages
+                    closeButton: false,
+                // provides the ability to rename notifier classes
+                    classes : {
+                        base: 'alertify-notifier',
+                        prefix:'ajs-',
+                        message: 'ajs-message',
+                        top: 'ajs-top',
+                        right: 'ajs-right',
+                        bottom: 'ajs-bottom',
+                        left: 'ajs-left',
+                        center: 'ajs-center',
+                        visible: 'ajs-visible',
+                        hidden: 'ajs-hidden',
+                        close: 'ajs-close'
+                    }
+                },
+
+                // language resources 
+                glossary:{
+                    // dialogs default title
+                    title:'Bookease',
+                    // ok button text
+                    ok: 'OK',
+                    // cancel button text
+                    cancel: 'Cancel'            
+                },
+
+                // theme settings
+                theme:{
+                    // class name attached to prompt dialog input textbox.
+                    input:'ajs-input',
+                    // class name attached to ok button
+                    ok:'ajs-ok',
+                    // class name attached to cancel button 
+                    cancel:'ajs-cancel'
+                },
+                // global hooks
+                hooks:{
+                    // invoked before initializing any dialog
+                    preinit:function(instance){},
+                    // invoked after initializing any dialog
+                    postinit:function(instance){},
+                },
+            };
+            
+            <?php if (isset($_SESSION['msg'])): ?>
+                alertify.alert('Note: <?= $_SESSION['msg'] ?>');
+            <?php endif; ?>
+        });
+    </script>
 </body>
 </html>

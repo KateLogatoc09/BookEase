@@ -96,30 +96,8 @@
                 <?php endif; ?>
             </div>
         </nav>
-
-        <div class="container-fluid bg-primary py-5 mb-5 hero-header cover">
-            <div class="container py-5">
-                <div class="row justify-content-center py-5">
-                    <div class="col-lg-10 pt-lg-5 mt-lg-5 text-center">
-                        <h1 class="display-3 text-white animated slideInDown">Booking</h1>
-                        <nav aria-label="breadcrumb">
-                            <ol class="breadcrumb justify-content-center">
-                                <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                <li class="breadcrumb-item"><a href="#">Pages</a></li>
-                                <li class="breadcrumb-item text-white active" aria-current="page">Book</li>
-                            </ol>
-                        </nav>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
     <!-- Navbar & Hero End -->
-    <!-- Rooms End -->
-    <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-                <h6 class="section-title bg-white text-center text-primary px-3">Reservations</h6>
-                <h1 >Booking Page</h1>
-            </div>
+
          <!-- Booking Start -->
          <div class="back">
         <div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
@@ -130,7 +108,7 @@
                 <div class="row g-5 align-items-center">
                     <div class="col-md-6 text-white" id="classy2">
                         <div class="row g-3">
-                            <h1 class="text-white mb-4 text-center" id="classy">Booking Details</h1><br>
+                            <h2 class="text-white mb-4 text-center" id="classy">Booking Details</h2><br>
                             <h4 class="text-white mb-4 text-center" id="classy2">Room: <span class="green" id="classy2"><?php if(isset($selected['name'])): echo $selected['name']; endif; ?></span></h4>
                             <input type="hidden" value="<?php if(isset($selected['id'])): echo $selected['id']; endif; ?>" name="room_id"/>
                             <h4 class="text-white mb-4 text-center" id="classy2">Description: <span class="green" id="classy2"><?php if(isset($selected['description'])): echo $selected['description']; endif; ?></span></h4>
@@ -139,8 +117,15 @@
                         </div>
                     </div>
                     <div class="col-md-6">
-                        <h2 class="text-white mb-4 text-center" id="classy">Enter Details</h2>
                             <div class="row g-3">
+
+                            <div class="col-md-12" id="color">
+                                    <div class="form-floating">
+                                        <input type="text" class="form-control bg-transparent check_in pointer" id="date" placeholder="Date Schedule" name="check_in" required>
+                                        <label for="date">Date Schedule</label>
+                                    </div>
+                                </div>
+
                                 <div class="col-md-12"  id="color">
                                     <div class="form-floating">
                                         <input type="number" maxlength="50" class="form-control bg-transparent" id="guest" placeholder="Number of Guest" name="pax" required>
@@ -160,20 +145,11 @@
                                         <input type="number" maxlength="50" class="form-control bg-transparent" id="guest" name="days" required>
                                         <label for="guest">Number of Days</label>
                                     </div>
-                                </div>
+                                </div>                
 
                                 <div class="col-md-12" id="color">
                                     <div class="form-floating">
-                                        <input type="text" class="form-control bg-transparent check_in pointer" id="date" placeholder="Date Schedule" name="check_in" required>
-                                        <label for="date">Date Schedule</label>
-                                    </div>
-                                </div>
-
-                                
-
-                                <div class="col-md-12" id="color">
-                                    <div class="form-floating">
-                                        <input type="text" class="form-control bg-transparent" id="instructions" placeholder="Specisl Instructions" name="note" required>
+                                        <input type="text" class="form-control bg-transparent" id="instructions" placeholder="Specisl Instructions" name="note">
                                         <label for="instructions">Special Instructions</label>
                                     </div>
                                 </div>
