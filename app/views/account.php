@@ -306,10 +306,14 @@
                                                             <option value="<?= $gender ?>" selected><?= $gender ?></option>
                                                             <option value="Female">Female</option>
                                                             <option value="Male">Male</option>
-                                                        <?php endif; else: ?>
+                                                        <?php else: ?>
                                                             <option value="Female">Female</option>
                                                             <option value="Male">Male</option>
                                                             <option value="Others">Others</option>
+                                                        <?php endif; else: ?>
+                                                          <option value="Female">Female</option>
+                                                          <option value="Male">Male</option>
+                                                          <option value="Others">Others</option>
                                                         <?php endif; ?>
                                                         </select>
                                                         <label for="gender">Gender</label>
