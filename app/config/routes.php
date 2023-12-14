@@ -83,7 +83,7 @@ $router->get('booking/(:any)', 'Account_Info::booking');
 $router->get('booking/cancelled/(:any)', 'Account_Info::cancel');
 $router->get('booking/reapplied/(:any)', 'Account_Info::reapply');
 $router->get('payment/(:any)', 'Account_Info::payment');
-$router->get('pay', 'Account_Info::pay');
+$router->post('pay', 'Account_Info::pay');
 $router->match('book_save', 'Account_Info::book', 'GET|POST');
 $router->match('appointment_save', 'Account_Info::appointment', 'GET|POST');
 $router->match('editprofile', 'Account_Info::edit_info', 'GET|POST');
