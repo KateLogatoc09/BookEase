@@ -109,7 +109,7 @@
 
           <ul class="menu-inner py-1">
             <!-- Dashboard -->
-            <li class="menu-item active">
+            <li class="menu-item">
               <a href="<?php echo site_url().'/'; ?>admin" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
                 <div data-i18n="Analytics">Dashboard</div>
@@ -130,12 +130,6 @@
               </a>
 
               <ul class="menu-sub">
-
-                <li class="menu-item">
-                  <a href="<?php echo site_url().'/'; ?>admin_apartment_reports" class="menu-link">
-                    <div data-i18n="Container">Reports</div>
-                  </a>
-                </li>
 
                 <li class="menu-item">
                   <a href="<?php echo site_url().'/'; ?>admin_apartment_manage" class="menu-link">
@@ -163,12 +157,6 @@
               <ul class="menu-sub">
 
                 <li class="menu-item">
-                  <a href="<?php echo site_url().'/'; ?>admin_resort_reports" class="menu-link">
-                    <div data-i18n="Container">Reports</div>
-                  </a>
-                </li>
-
-                <li class="menu-item">
                   <a href="<?php echo site_url().'/'; ?>admin_resort_manage" class="menu-link">
                     <div data-i18n="Without menu">Manage</div>
                   </a>
@@ -194,12 +182,6 @@
               <ul class="menu-sub">
 
                 <li class="menu-item">
-                  <a href="<?php echo site_url().'/'; ?>admin_spa_reports" class="menu-link">
-                    <div data-i18n="Container">Reports</div>
-                  </a>
-                </li>
-
-                <li class="menu-item">
                   <a href="<?php echo site_url().'/'; ?>admin_spa_manage" class="menu-link">
                     <div data-i18n="Without menu">Manage</div>
                   </a>
@@ -222,7 +204,7 @@
               <span class="menu-header-text">Users</span>
             </li>
 
-            <li class="menu-item">
+            <li class="menu-item active">
 
               <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-user-circle"></i>
@@ -231,7 +213,7 @@
 
               <ul class="menu-sub">
 
-                <li class="menu-item">
+                <li class="menu-item active">
                   <a href="<?php echo site_url().'/'; ?>admin_tourists_manage" class="menu-link">
                     <div data-i18n="Account">Manage</div>
                   </a>
@@ -521,32 +503,19 @@
                         <th class="text-white">ID</th>
                         <th class="text-white">Reference</th>
                         <th class="text-white">Date</th>
-                        <th class="text-white">Action</th>
                       </tr>
                     </thead>
                     <tbody class="table-border-bottom-0">
-     
+                    <?php foreach($cancelled as $cld): ?>
                       <tr>
-                        <td>#</td>
-                        <td><strong>#</strong></td>
-                        <td><strong>#</strong></td>
-                          <td>
-                          <div class="dropdown">
-                            <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
-                              <i class="bx bx-dots-vertical-rounded"></i>
-                            </button>
-                            <div class="dropdown-menu">
-                              <a class="dropdown-item" href="#"
-                                ><i class="bx bx-edit-alt me-1"></i> Reapply</a
-                              >
-                              <a class="dropdown-item" href="#"
-                                ><i class="bx bx-minus me-1"></i> Delete</a
-                              >
+                        <td><?php if(isset($cld['id'])): ?><?= $cld['id']; ?><?php endif; ?></td>
+                        <td><strong><?php if(isset($cld['reference'])): ?><?= $cld['reference']; ?><?php endif; ?></strong></td>
+                        <td><strong><?php if(isset($cld['date'])): ?><?= $cld['date']; ?><?php endif; ?></strong></td>
                             </div>
                           </div>
                         </td>
                       </tr>
-
+                    <?php endforeach; ?>
                     </tbody>
                   </table>
                 </div>

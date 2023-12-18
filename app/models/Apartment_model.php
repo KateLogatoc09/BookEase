@@ -61,7 +61,7 @@ class Apartment_model extends Model {
 
     //reservations
     public function reservations() {
-        return $this->db->table('reservations AS res')->select('res.id AS resid, name, actual_price, qty, firstname, middlename, lastname, phone, res.pax as pax, days, check_in, check_out, total, code, reference, res.status as status, note')->inner_join('room AS r', 'res.room_id = r.id')->inner_join('account_info AS info', 'res.user_id = info.user_id')->inner_join('user_account AS acc', 'res.user_id = acc.id')->where('r.category', 'APARTMENT')->get_all();
+        return $this->db->table('reservations AS res')->select('res.id AS resid, name, actual_price, qty, firstname, middlename, lastname, phone, res.pax as pax, days, check_in, check_out, total, code, reference, res.status as status, note')->inner_join('room AS r', 'res.room_id = r.id')->left_join('account_info AS info', 'res.user_id = info.user_id')->inner_join('user_account AS acc', 'res.user_id = acc.id')->where('r.category', 'APARTMENT')->get_all();
     }
 
     public function select($sel) {
@@ -109,6 +109,10 @@ class Apartment_model extends Model {
             'note'=> $note,
         ];
         return $this->db->table('reservations')->where('reference', $reference)->update($bind);
+    }
+
+    public function transactions() {
+        return $this->db->table('reservations as res')->select_count('res.id', 'total_row')->inner_join('room as r', 'res.room_id = r.id')->where('category', 'APARTMENT')->get();
     }
 
 }

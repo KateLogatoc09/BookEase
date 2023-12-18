@@ -8,6 +8,7 @@ class Main extends Controller {
         $this->call->model('Apartment_model', 'ap');
         $this->call->model('Account_Model','acc');
         $this->call->model('Spa_Model','spa');
+        $this->call->model('Main_Model','main');
     }
 	public function index() {
 		$this->call->view('homepage');
@@ -68,7 +69,13 @@ class Main extends Controller {
         $this->call->view('spa', $data);
     }
     public function admin(){
-        $this->call->view('admin');
+        $data = [
+            'spa' => $this->spa->transactions(),
+            'ap' => $this->ap->transactions(),
+            'res' => $this->res->transactions(),
+            'main' => $this->main->sales(),
+        ];
+        $this->call->view('admin', $data);
     }
     public function register(){
         $this->call->view('register');

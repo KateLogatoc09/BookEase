@@ -16,10 +16,6 @@ class Apartment extends Controller {
         $this->call->view('admin_apartment_manage', $data);
     }
 
-    public function report() {
-        $this->call->view('admin_apartment_report');
-    }
-
     public function reservation() {
         $data = [
             'rooms' => $this->ap->list(),

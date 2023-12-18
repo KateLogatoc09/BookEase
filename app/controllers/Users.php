@@ -13,6 +13,7 @@ class Users extends Controller {
             'account'=> $this->users->users_tourist(),
             'booking' => $this->users->tourist_booking(),
             'appointment' => $this->users->tourist_appointment(),
+            'cancelled' => $this->users->cancel(),
         ];
         $this->call->view('admin_tourists_manage', $data);
     }

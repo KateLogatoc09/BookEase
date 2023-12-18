@@ -91,7 +91,6 @@ $router->match('admin_account', 'Account_Info::get_userinfo', 'GET|POST');
 
 
 $router->get('admin_apartment_manage', 'Apartment::manage');
-$router->get('admin_apartment_reports', 'Apartment::report');
 $router->get('admin_apartment_reservations', 'Apartment::reservation'); 
 $router->get('editroom_ap/(:num)', 'Apartment::edit');
 $router->get('delroom_ap/(:num)', 'Apartment::delete');
@@ -100,7 +99,6 @@ $router->get('editres_ap/(:num)', 'Apartment::res');
 $router->match('manageres_ap', 'Apartment::save_res', 'GET|POST');
 
 $router->get('admin_resort_manage', 'resort::manage');
-$router->get('admin_resort_reports', 'resort::report');
 $router->get('admin_resort_reservations', 'resort::reservation'); 
 $router->get('editroom_res/(:num)', 'resort::edit');
 $router->get('delroom_res/(:num)', 'resort::delete');
@@ -110,7 +108,6 @@ $router->match('manageres_res', 'resort::save_res', 'GET|POST');
 
 
 $router->get('admin_spa_manage', 'spa::manage');
-$router->get('admin_spa_reports', 'spa::report');
 $router->get('admin_spa_reservations', 'spa::reservation'); 
 $router->get('editservices/(:num)', 'spa::edit');
 $router->get('delservices/(:num)', 'spa::delete');

@@ -102,5 +102,9 @@ class Spa_model extends Model {
         return $this->db->table('services')->insert($bind);
     }
 
+    public function transactions() {
+        return $this->db->table('appointment')->select_count('id', 'total_row')->get();
+    }
+
 }
 ?>

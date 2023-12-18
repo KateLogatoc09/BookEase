@@ -109,7 +109,7 @@
 
           <ul class="menu-inner py-1">
             <!-- Dashboard -->
-            <li class="menu-item active">
+            <li class="menu-item">
               <a href="<?php echo site_url().'/'; ?>admin" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
                 <div data-i18n="Analytics">Dashboard</div>
@@ -130,12 +130,6 @@
               </a>
 
               <ul class="menu-sub">
-
-                <li class="menu-item">
-                  <a href="<?php echo site_url().'/'; ?>admin_apartment_reports" class="menu-link">
-                    <div data-i18n="Container">Reports</div>
-                  </a>
-                </li>
 
                 <li class="menu-item">
                   <a href="<?php echo site_url().'/'; ?>admin_apartment_manage" class="menu-link">
@@ -163,12 +157,6 @@
               <ul class="menu-sub">
 
                 <li class="menu-item">
-                  <a href="<?php echo site_url().'/'; ?>admin_resort_reports" class="menu-link">
-                    <div data-i18n="Container">Reports</div>
-                  </a>
-                </li>
-
-                <li class="menu-item">
                   <a href="<?php echo site_url().'/'; ?>admin_resort_manage" class="menu-link">
                     <div data-i18n="Without menu">Manage</div>
                   </a>
@@ -185,7 +173,7 @@
             </li>
             <!-- END -->
             <!-- SPA -->
-            <li class="menu-item">
+            <li class="menu-item active">
               <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-spa"></i>
                 <div data-i18n="Layouts">Spa</div>
@@ -193,13 +181,7 @@
 
               <ul class="menu-sub">
 
-                <li class="menu-item">
-                  <a href="<?php echo site_url().'/'; ?>admin_spa_reports" class="menu-link">
-                    <div data-i18n="Container">Reports</div>
-                  </a>
-                </li>
-
-                <li class="menu-item">
+                <li class="menu-item active">
                   <a href="<?php echo site_url().'/'; ?>admin_spa_manage" class="menu-link">
                     <div data-i18n="Without menu">Manage</div>
                   </a>

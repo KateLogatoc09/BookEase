@@ -110,6 +110,10 @@ class Resort_model extends Model {
         ];
         return $this->db->table('reservations')->where('reference', $reference)->update($bind);
     }
+
+    public function transactions() {
+        return $this->db->table('reservations as res')->select_count('res.id', 'total_row')->inner_join('room as r', 'res.room_id = r.id')->where('category', 'RESORT')->get();
+    }
 	
 }
 ?>

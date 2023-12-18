@@ -283,5 +283,9 @@ class Account_model extends Model {
         return $this->db->table('payment')->where('reference', $reference)->get();
     }
 
+    //cancelled
+    public function cancel() {
+        return $this->db->table('cancelled')->get_all();
+    }
 }
 ?>

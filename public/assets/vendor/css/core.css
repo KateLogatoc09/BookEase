@@ -2116,6 +2116,10 @@ progress {
   transform-origin: 40% 20%;
 }
 
+.text-green {
+  color: darkgreen !important;
+}
+
 
 
 .table-dark {

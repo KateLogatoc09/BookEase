@@ -16,10 +16,6 @@ class Resort extends Controller {
         $this->call->view('admin_resort_manage', $data);
     }
 
-    public function report() {
-        $this->call->view('admin_resort_report');
-    }
-
     public function reservation() {
         $data = [
             'rooms' => $this->res->list(),

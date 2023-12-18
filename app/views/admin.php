@@ -132,12 +132,6 @@
               <ul class="menu-sub">
 
                 <li class="menu-item">
-                  <a href="<?php echo site_url().'/'; ?>admin_apartment_reports" class="menu-link">
-                    <div data-i18n="Container">Reports</div>
-                  </a>
-                </li>
-
-                <li class="menu-item">
                   <a href="<?php echo site_url().'/'; ?>admin_apartment_manage" class="menu-link">
                     <div data-i18n="Without menu">Manage</div>
                   </a>
@@ -163,12 +157,6 @@
               <ul class="menu-sub">
 
                 <li class="menu-item">
-                  <a href="<?php echo site_url().'/'; ?>admin_resort_reports" class="menu-link">
-                    <div data-i18n="Container">Reports</div>
-                  </a>
-                </li>
-
-                <li class="menu-item">
                   <a href="<?php echo site_url().'/'; ?>admin_resort_manage" class="menu-link">
                     <div data-i18n="Without menu">Manage</div>
                   </a>
@@ -192,12 +180,6 @@
               </a>
 
               <ul class="menu-sub">
-
-                <li class="menu-item">
-                  <a href="<?php echo site_url().'/'; ?>admin_spa_reports" class="menu-link">
-                    <div data-i18n="Container">Reports</div>
-                  </a>
-                </li>
 
                 <li class="menu-item">
                   <a href="<?php echo site_url().'/'; ?>admin_spa_manage" class="menu-link">
@@ -378,11 +360,55 @@
             <!-- Content -->
 
             <div class="container-xxl flex-grow-1 container-p-y">
-              <div class="row">
 
-              
+              <div class="row mb-2">
+                <div class="col-md-6 col-lg-4 mb-3">
+                  <div class="card">
+                    <div class="card-header text-green">APARTMENT TRANSACTIONS<hr></div>
+                    <div class="card-body py-0">
+                      <h1><?= $ap['total_row'] ?></h1>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6 col-lg-4 mb-3">
+                  <div class="card">
+                    <div class="card-header text-green">RESORT TRANSACTIONS<hr></div>
+                    <div class="card-body py-0">
+                      <h1><?= $res['total_row'] ?></h1>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6 col-lg-4 mb-3">
+                  <div class="card">
+                    <div class="card-header text-green">SPA TRANSACTIONS<hr></div>
+                    <div class="card-body py-0">
+                      <h1><?= $spa['total_row'] ?></h1>
+                    </div>
+                  </div>
+                </div>
+
               </div>
-            </div>
+
+              <div class="row mb-2">
+              <div class="col-md-6 col-lg-6 mb-3">
+                  <div class="card">
+                    <div class="card-header text-green">RESERVATIONS<hr></div>
+                    <div class="card-body">
+                    <canvas id="Reservations"></canvas>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6 col-lg-6 mb-3">
+                  <div class="card">
+                    <div class="card-header text-green">SALES<hr></div>
+                    <div class="card-body">
+                    <canvas id="Sales"></canvas>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              </div>
             <!-- / Content -->
 
             <!-- Footer -->
@@ -456,8 +482,88 @@
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
 
+    <!-- chart.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.min.js" integrity="sha512-L0Shl7nXXzIlBSUUPpxrokqq4ojqgZFQczTYlGjzONGTDAcLremjwaWv5A+EDLnxhQzY5xUZPWLOLqYRkY0Cbw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.js" integrity="sha512-7DgGWBKHddtgZ9Cgu8aGfJXvgcVv4SWSESomRtghob4k4orCBUTSRQ4s5SaC2Rz+OptMqNk0aHHsaUBk6fzIXw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js" integrity="sha512-ZwR1/gSZM3ai6vCdI+LVF1zSq/5HznD3ZSTk7kajkaj4D292NLuduDCO1c/NT8Id+jE58KYLKT7hXnbtryGmMg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js" integrity="sha512-CQBWl4fJHWbryGE+Pc7UAxWMUMNMWzWxF4SQo9CgkJIN1kx6djDQZjh3Y8SZ1d+6I+1zze6Z7kHXO7q3UyZAWw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/helpers.js" integrity="sha512-08S2icXl5dFWPl8stSVyzg3W14tTISlNtJekjsQplv326QtsmbEVqL4TFBrRXTdEj8QI5izJFoVaf5KgNDDOMA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/helpers.min.js" integrity="sha512-JG3S/EICkp8Lx9YhtIpzAVJ55WGnxT3T6bfiXYbjPRUoN9yu+ZM+wVLDsI/L2BWRiKjw/67d+/APw/CDn+Lm0Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
     <!-- Custom Js -->
     <script>
+      const ctx = document.getElementById('Reservations');
+      const cty = document.getElementById('Sales');
+      var res = ['darkgreen', 'green', 'lightgreen'];
+      new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: ['APARTMENT', 'RESORT', 'SPA'],
+          datasets: [{
+            data: [<?= $ap['total_row'] ?>, <?= $res['total_row'] ?>, <?= $spa['total_row'] ?>],
+            borderWidth: 0,
+            backgroundColor: res,
+          }]
+        },
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true,
+              grid: {
+                drawOnChartArea: false
+              },
+            },
+            x: {
+              grid: {
+                drawOnChartArea: false
+              },
+            },
+          },
+          plugins: {
+            legend: {
+              display: false,
+             }
+          }
+        }
+      });
+
+      new Chart(cty, {
+        type: 'line',
+        data: {
+          labels: [<?php foreach($main as $m): ?>'<?= $m['resc']?>',<?php endforeach; ?>],
+          datasets: [{
+            data: [<?php foreach($main as $m): ?><?= $m['rest']?>,<?php endforeach; ?>],
+            borderWidth: 1,
+            backgroundColor: 'darkgreen',
+            fill: true,
+            lineTension: 0.4,   
+          }]
+        },
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true,
+              grid: {
+                drawOnChartArea: false
+              },
+            },
+            x: {
+              grid: {
+                drawOnChartArea: false
+              },
+            },
+          },
+          plugins: {
+            legend: {
+              display: false,
+             }
+          }
+        }
+      });
+
+
+
+    /////////////////////////////////////
       $(document).ready(function(){
             alertify.defaults = {
                 // dialogs defaults
