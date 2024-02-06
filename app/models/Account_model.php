@@ -196,13 +196,6 @@ class Account_model extends Model {
         return $this->db->table('reservations as res')->select('reference, total, category, name, qty, res.pax as pax, days, check_in, check_out, code, res.status as status, note')->inner_join('room as r', 'res.room_id = r.id')->where('reference',$reference)->get();
     }
 
-    public function process_res($reference) {
-        $bind = [
-            'status' => 'PROCESSING',
-        ];
-        return $this->db->table('reservations')->where('reference',$reference)->update($bind);
-    }
-
     public function cancel_res($reference) {
         $bind = [
             'status' => 'CANCELLED',
@@ -237,14 +230,7 @@ class Account_model extends Model {
     }
 
     public function getapp($reference) {
-        return $this->db->table('appointment as app')->select('reference, total, name, date ,time, note, code, status')->inner_join('services as serv', 'app.service_id = serv.id')->where('reference',$reference)->get();
-    }
-
-    public function process_app($reference) {
-        $bind = [
-            'status' => 'PROCESSING',
-        ];
-        return $this->db->table('appointment')->where('reference',$reference)->update($bind);
+        return $this->db->table('appointment as app')->select('reference, total, name, date ,time, note, code, app.status as status')->inner_join('services as serv', 'app.service_id = serv.id')->where('reference',$reference)->get();
     }
 
     public function cancel_app($reference) {
@@ -259,6 +245,10 @@ class Account_model extends Model {
             'status' => 'REAPPLIED',
         ]; 
         return $this->db->table('appointment')->where('reference',$reference)->update($bind);
+    }
+
+    public function appointments($token) {
+        return $this->db->table('appointment as app')->select('reference, name, app.status as status, date, time')->inner_join('services as s', 'app.service_id = s.id')->inner_join('user_account as acc', 'app.user_id = acc.id')->where('token',$token)->get_all();
     }
 
     //payment

@@ -52,19 +52,19 @@ class Main extends Controller {
 
     public function apartments(){
         $data = [
-            'rooms' => $this->ap->list(),
+            'rooms' => $this->ap->list_avail(),
         ];
         $this->call->view('apartments', $data);
     }
     public function resorts(){
         $data = [
-            'rooms' => $this->res->list(),
+            'rooms' => $this->res->list_avail(),
         ];
         $this->call->view('resorts', $data);
     }
     public function spa(){
         $data = [
-            'services' => $this->spa->list(),
+            'services' => $this->spa->list_avail(),
         ];
         $this->call->view('spa', $data);
     }

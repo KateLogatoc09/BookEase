@@ -7,6 +7,14 @@ class Apartment_model extends Model {
         return $this->db->table('room')->where('category', 'APARTMENT')->get_all();
     }
 
+    public function list_avail() {
+        $where = [
+            'category'=> 'APARTMENT',
+            'status' => 'AVAILABLE',
+        ];
+        return $this->db->table('room')->where($where)->get_all();
+    }
+
     public function selected($sel) {
         return $this->db->table('room')->where('id', $sel)->get();
     }

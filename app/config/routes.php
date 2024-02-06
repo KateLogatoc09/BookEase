@@ -113,7 +113,7 @@ $router->get('editservices/(:num)', 'spa::edit');
 $router->get('delservices/(:num)', 'spa::delete');
 $router->match('manageservices', 'spa::save', 'GET|POST');
 $router->get('editappointments/(:num)', 'spa::app');
-$router->match('manageappointments', 'spa::save_app', 'GET|POST');
+$router->match('manageapp', 'spa::save_app', 'GET|POST');
 
 $router->get('admin_tourists_manage', 'Users::t_manage');
 $router->match('active/(:num)', 'Users::active', 'GET|POST');

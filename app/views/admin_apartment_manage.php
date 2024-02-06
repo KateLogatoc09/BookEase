@@ -574,6 +574,7 @@
                                     step="0.01"
                                     id="ac_price"
                                     value="<?php if(isset($selected['actual_price'])): echo $selected['actual_price']; endif; ?>"
+                                    name="actual_price"
                                     autofocus
                                     readonly
                                     />

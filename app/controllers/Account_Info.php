@@ -213,9 +213,26 @@ class Account_Info extends Controller {
                                         $photo = 'public/admin/'.$fetch['id'].'/'.$this->upload->get_filename();
                                         $result1 = $this->users->Edit_Details($id, $gender, $civilstatus, $firstname, $middlename, $lastname, $photo);
                                         $result2 = $this->users->Update_AccountInfo($Token, $username, $email, $region, $province, $municipality, $barangay, $street, $zipcode, $phone);
-                                        if($result1 && $result2) {
-                                            $this->session->set_flashdata('msg', 'Your profile information was updated successfully.');
-                                            redirect(site_url().'/admin_account');
+                                        if($result1) {
+                                            if($result2) {
+                                                $this->session->set_flashdata('msg', 'Your profile information was updated successfully.');
+                                                $_SESSION['img'] = $photo;
+                                                redirect(site_url().'/admin_account');
+                                            } else {
+                                                $this->session->set_flashdata('msg', 'Your profile information was updated successfully.');
+                                                $_SESSION['img'] = $photo;
+                                                redirect(site_url().'/admin_account');
+                                            }
+                                        } else if($result2) {
+                                            if($result1) {
+                                                $this->session->set_flashdata('msg', 'Your profile information was updated successfully.');
+                                                $_SESSION['img'] = $photo;
+                                                redirect(site_url().'/admin_account');
+                                            } else {
+                                                $this->session->set_flashdata('msg', 'Your profile information was updated successfully.');
+                                                $_SESSION['img'] = $photo;
+                                                redirect(site_url().'/admin_account');
+                                            }
                                         } else {
                                             $this->session->set_flashdata('msg', 'Something went wrong. Please try again later.');
                                             redirect(site_url().'/admin_account');
@@ -264,9 +281,22 @@ class Account_Info extends Controller {
                                     } else {
                                         $result1 = $this->users->Edit_Details($id, $gender, $civilstatus, $firstname, $middlename, $lastname, $photo);
                                         $result2 = $this->users->Update_AccountInfo($Token, $username, $email, $region, $province, $municipality, $barangay, $street, $zipcode, $phone);
-                                        if($result1 && $result2) {
-                                            $this->session->set_flashdata('msg', 'Your profile information was updated successfully.');
-                                            redirect(site_url().'/admin_account');
+                                        if($result1) {
+                                            if($result2) {
+                                                $this->session->set_flashdata('msg', 'Your profile information was updated successfully.');
+                                                redirect(site_url().'/admin_account');
+                                            } else {
+                                                $this->session->set_flashdata('msg', 'Your profile information was updated successfully.');
+                                                redirect(site_url().'/admin_account');
+                                            }
+                                        } else if($result2) {
+                                            if($result1) {
+                                                $this->session->set_flashdata('msg', 'Your profile information was updated successfully.');
+                                                redirect(site_url().'/admin_account');
+                                            } else {
+                                                $this->session->set_flashdata('msg', 'Your profile information was updated successfully.');
+                                                redirect(site_url().'/admin_account');
+                                            }
                                         } else {
                                             $this->session->set_flashdata('msg', 'Something went wrong. Please try again later.');
                                             redirect(site_url().'/admin_account');
@@ -431,9 +461,22 @@ class Account_Info extends Controller {
                                         $photo = 'public/tourist/'.$fetch['id'].'/'.$this->upload->get_filename();
                                         $result1 = $this->users->Edit_Details($id, $gender, $civilstatus, $firstname, $middlename, $lastname, $photo);
                                         $result2 = $this->users->Update_AccountInfo($Token, $username, $email, $region, $province, $municipality, $barangay, $street, $zipcode, $phone);
-                                        if($result1 && $result2) {
+                                        if($result1) {
+                                            if ($result2) {
                                             $this->session->set_flashdata('msg', 'Your profile information was updated successfully.');
                                             redirect(site_url().'/account');
+                                            } else{
+                                            $this->session->set_flashdata('msg', 'Your profile information was updated successfully.');
+                                            redirect(site_url().'/account');
+                                            }
+                                        } else if($result2) {
+                                            if ($result1) {
+                                                $this->session->set_flashdata('msg', 'Your profile information was updated successfully.');
+                                                redirect(site_url().'/account');
+                                                } else{
+                                                $this->session->set_flashdata('msg', 'Your profile information was updated successfully.');
+                                                redirect(site_url().'/account');
+                                                }
                                         } else {
                                             $this->session->set_flashdata('msg', 'Something went wrong. Please try again later.');
                                             redirect(site_url().'/account');
@@ -482,9 +525,22 @@ class Account_Info extends Controller {
                                     } else {
                                         $result1 = $this->users->Edit_Details($id, $gender, $civilstatus, $firstname, $middlename, $lastname, $photo);
                                         $result2 = $this->users->Update_AccountInfo($Token, $username, $email, $region, $province, $municipality, $barangay, $street, $zipcode, $phone);
-                                        if($result1 && $result2) {
-                                            $this->session->set_flashdata('msg', 'Your profile information was updated successfully.');
-                                            redirect(site_url().'/account');
+                                        if($result1) {
+                                            if ($result2) {
+                                                $this->session->set_flashdata('msg', 'Your profile information was updated successfully.');
+                                                redirect(site_url().'/account');
+                                                } else{
+                                                $this->session->set_flashdata('msg', 'Your profile information was updated successfully.');
+                                                redirect(site_url().'/account');
+                                                }
+                                        } else if($result2) {
+                                            if ($result1) {
+                                                $this->session->set_flashdata('msg', 'Your profile information was updated successfully.');
+                                                redirect(site_url().'/account');
+                                                } else{
+                                                $this->session->set_flashdata('msg', 'Your profile information was updated successfully.');
+                                                redirect(site_url().'/account');
+                                                }
                                         } else {
                                             $this->session->set_flashdata('msg', 'Something went wrong. Please try again later.');
                                             redirect(site_url().'/account');
@@ -682,8 +738,10 @@ class Account_Info extends Controller {
     }
     public function bookings() {
         $check = $this->users->bookings(sha1($_SESSION['token']));
+        $check2 = $this->users->appointments(sha1($_SESSION['token']));
         $data = [
             'bookings' => $check,
+            'appointments' => $check2
         ];
         return $this->call->view('bookings', $data);
     }
@@ -772,8 +830,7 @@ class Account_Info extends Controller {
                 if($this->upload->do_upload()) {
                     $photo = 'public/tourist/'.$get['id'].'/'.$this->upload->get_filename();
                     $result = $this->users->pay_again($_POST['reference'], $photo, $_POST['downpayment']);
-                    $result2 = $this->users->process_res($_POST['reference']);
-                    if($result && $result2) {
+                    if($result) {
                         $this->session->set_flashdata('msg', 'Your request is on processed.');
                         redirect(site_url().'/bookings');
                     } else {
@@ -793,8 +850,7 @@ class Account_Info extends Controller {
                 if($this->upload->do_upload()) {
                     $photo = 'public/tourist/'.$get['id'].'/'.$this->upload->get_filename();
                     $result = $this->users->pay_again($_POST['reference'], $photo, $_POST['downpayment']);
-                    $result2 = $this->users->process_app($_POST['reference']);
-                    if($result && $result2) {
+                    if($result) {
                         $this->session->set_flashdata('msg', 'Your request is on processed.');
                         redirect(site_url().'/bookings');
                     } else {
@@ -817,8 +873,7 @@ class Account_Info extends Controller {
                 if($this->upload->do_upload()) {
                     $photo = 'public/tourist/'.$get['id'].'/'.$this->upload->get_filename();
                     $result1 = $this->users->pay($_POST['reference'], $photo, $_POST['downpayment']);
-                    $result2 = $this->users->process_res($_POST['reference']);
-                    if($result1 && $result2) {
+                    if($result1) {
                         $this->session->set_flashdata('msg', 'Your request is on processed.');
                         redirect(site_url().'/bookings');
                     } else {
@@ -838,8 +893,7 @@ class Account_Info extends Controller {
                 if($this->upload->do_upload()) {
                     $photo = 'public/tourist/'.$get['id'].'/'.$this->upload->get_filename();
                     $result1 = $this->users->pay($_POST['reference'], $photo, $_POST['downpayment']);
-                    $result2 = $this->users->process_app($_POST['reference']);
-                    if($result1 && $result2) {
+                    if($result1) {
                         $this->session->set_flashdata('msg', 'Your request is on processed.');
                         redirect(site_url().'/bookings');
                     } else {

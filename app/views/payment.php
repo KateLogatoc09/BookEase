@@ -92,7 +92,7 @@
         <div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
         <div class="container">
             <div>
-                <form action="<?=site_url()?>/pay" method="post">
+                <form action="<?=site_url()?>/pay" method="post" enctype="multipart/form-data">
                 <div class="row g-5 align-items-center">
                     <div class="col-md-6 text-white" id="classy2">
                         <div class="row g-3">
@@ -100,7 +100,6 @@
                             <h4 class="text-white mb-4 text-center" id="classy2">Payment for: <span class="green" id="classy2"><?php if(isset($selected['reference'])): echo $selected['reference']; endif; ?></span></h4>
                             <h4 class="text-white mb-4 text-center" id="classy2">Pay to this Number (Paymaya, Gcash, Shopee Pay): <span class="green" id="classy2">Ex: 09XXXXXXXXX</span></h4>
                             <h4 class="text-white mb-4 text-center" id="classy2">Amount to be Paid: <span class="green" id="classy2">&#8369; <?php if(isset($selected['total'])): echo $selected['total'] * .20; endif; ?></span></h4>
-                            <input type="hidden" value="APPLIED" name="status"/>
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -110,7 +109,7 @@
                                     <div class="form-floating">
                                         <input type="hidden" name="reference" value="<?php if(isset($selected['reference'])): echo $selected['reference']; endif; ?>" />
                                         <input type="hidden" name="downpayment" value="<?php if(isset($selected['total'])): echo $selected['total'] * .20; endif; ?>" />
-                                        <input type="file" class="form-control bg-transparent" id="proof" placeholder="proof" name="proof">
+                                        <input type="file" class="form-control bg-transparent" id="proof" placeholder="proof" name="proof"/>
                                         <label for="instructions">Upload your Receipt.</label>
                                     </div>
                                 </div>

@@ -210,7 +210,7 @@ class Authentication extends Controller {
                         redirect(site_url().'/login');
         
                     } 
-                } else {
+                } else if($result['status'] != 'BANNED') {
                     $random2 = substr(str_shuffle(str_repeat("0123456789", 6)), 0, 6);
                     $code = sha1($random2);
 
@@ -228,6 +228,9 @@ class Authentication extends Controller {
                         $this->session->set_flashdata('msg', 'Unable to send verification code at the moment. Please try again later.');
                         redirect(site_url()."/verify");
                     }
+                } else {
+                    $this->session->set_flashdata("msg","You're account is suspended.");
+                    redirect(site_url().'/login');
                 }
     
             } else {

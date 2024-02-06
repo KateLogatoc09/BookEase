@@ -6,6 +6,10 @@ class Spa_model extends Model {
         return $this->db->table('services')->get_all();
     }
 
+    public function list_avail() {
+        return $this->db->table('services')->where('status', 'AVAILABLE')->get_all();
+    }
+
     public function selected($sel) {
         return $this->db->table('services')->where('id', $sel)->get();
     }
@@ -84,7 +88,7 @@ class Spa_model extends Model {
             'note'=> $note
         ];
 
-        return $this->db->table('services')->where('reference', $reference)->update($bind);
+        return $this->db->table('appointment')->where('reference', $reference)->update($bind);
     }
 
     public function save_app($user_id, $service_id, $date, $time, $reference, $status, $total, $note) {
@@ -99,7 +103,7 @@ class Spa_model extends Model {
             'note'=> $note
         ];
 
-        return $this->db->table('services')->insert($bind);
+        return $this->db->table('appointment')->insert($bind);
     }
 
     public function transactions() {

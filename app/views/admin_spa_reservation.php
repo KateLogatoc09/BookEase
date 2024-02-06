@@ -463,7 +463,7 @@ date_default_timezone_set('Asia/Singapore');
               <div class="card my-4">
                 <h5 class="card-header">Add/Edit appointments</h5>
                 <hr class="my-0">
-                <form action="<?php echo site_url();?>/manageappointments" method="POST" enctype="multipart/form-data">
+                <form action="<?php echo site_url();?>/manageapp" method="POST" enctype="multipart/form-data">
                     <div class="card-body d-flex row">
                         <div class="col-sm-12 col-md-12 d-sm-block d-md-block ps-2">
                             <div class="row">

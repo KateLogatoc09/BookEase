@@ -188,8 +188,8 @@ class Spa extends Controller {
     public function save_app() {
         $random1 = substr(str_shuffle(str_repeat("0123456789abcdefghijklmnopqrstvwxyzABCDEFGHIJKLMNOPQRSTVWXYZ", 60)), 0, 12);
         $random2 = substr(str_shuffle(str_repeat("0123456789abcdefghijklmnopqrstvwxyzABCDEFGHIJKLMNOPQRSTVWXYZ", 60)), 0, 16);
-        $payment = $this->ap->selpay($_POST['reference']);
-        $services = $this->ap->selected($_POST['service_id']);
+        $payment = $this->spa->selpay($_POST['reference']);
+        $services = $this->spa->selected($_POST['service_id']);
         if(isset($_POST['note'])) {
             $note = html_escape($_POST['note']);
         } else {
@@ -221,10 +221,10 @@ class Spa extends Controller {
 
             if($res) {
                 $this->session->set_flashdata('msg','Changed successfully.');
-                redirect(site_url().'/admin_apartment_reservations');
+                redirect(site_url().'/admin_spa_reservations');
             } else {
                 $this->session->set_flashdata('msg','Something went wrong. Please try again later.');
-                redirect(site_url().'/admin_apartment_reservations');
+                redirect(site_url().'/admin_spa_reservations');
             }
 
         } else {
@@ -237,14 +237,14 @@ class Spa extends Controller {
             $status = $_POST['status'];
             $total = $services['actual_price'];
 
-            $res = $this->ap->save_app($user_id, $service_id, $date, $time, $reference, $status, $total, $note);
+            $res = $this->spa->save_app($user_id, $service_id, $date, $time, $reference, $status, $total, $note);
 
             if($res) {
                 $this->session->set_flashdata('msg','Booked successfully.');
-                redirect(site_url().'/admin_apartment_reservations');
+                redirect(site_url().'/admin_spa_reservations');
             } else {
                 $this->session->set_flashdata('msg','Something went wrong. Please try again later.');
-                redirect(site_url().'/admin_apartment_reservations');
+                redirect(site_url().'/admin_spa_reservations');
             }
         }
     }

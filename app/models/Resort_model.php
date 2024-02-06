@@ -7,6 +7,14 @@ class Resort_model extends Model {
         return $this->db->table('room')->where('category', 'RESORT')->get_all();
     }
 
+    public function list_avail() {
+        $where = [
+            'category'=> 'RESORT',
+            'status' => 'AVAILABLE',
+        ];
+        return $this->db->table('room')->where($where)->get_all();
+    }
+
     public function selected($sel) {
         return $this->db->table('room')->where('id', $sel)->get();
     }

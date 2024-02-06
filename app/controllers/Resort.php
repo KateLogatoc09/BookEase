@@ -230,7 +230,7 @@ class Resort extends Controller {
                 }
             } else {
                 $code = $_POST['code'];
-                $total = $_POST['actual_price'];
+                $total = $_POST['total'];
             }
 
             $res = $this->res->edit_res($reference, $code, $room_id, $qty, $pax, $days, $check_in, $status, $total, $note);

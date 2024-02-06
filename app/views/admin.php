@@ -392,7 +392,7 @@
               <div class="row mb-2">
               <div class="col-md-6 col-lg-6 mb-3">
                   <div class="card">
-                    <div class="card-header text-green">RESERVATIONS<hr></div>
+                    <div class="card-header text-green">OVERALL RESERVATIONS<hr></div>
                     <div class="card-body">
                     <canvas id="Reservations"></canvas>
                     </div>
@@ -400,7 +400,7 @@
                 </div>
                 <div class="col-md-6 col-lg-6 mb-3">
                   <div class="card">
-                    <div class="card-header text-green">SALES<hr></div>
+                    <div class="card-header text-green">WEEKLY BOOKING SALES<hr></div>
                     <div class="card-body">
                     <canvas id="Sales"></canvas>
                     </div>

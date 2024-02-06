@@ -435,7 +435,7 @@
                           <div class="mb-3 col-md-4">
                             <label for="gender" class="form-label">gender</label>
                             <select id="gender" name="gender" class="select2 form-select">
-                            <?php if(isset($gender)) ?>
+                            <?php if(isset($gender)): ?>
                               <?php if($gender == "Female"): ?>
                                 <option value="<?= $gender ?>" selected><?= $gender ?></option>
                                 <option value="Male">Male</option>
@@ -449,6 +449,10 @@
                               <option value="Female">Female</option>
                               <option value="Male">Male</option>
                             <?php else: ?>
+                              <option value="Female">Female</option>
+                              <option value="Male">Male</option>
+                              <option value="Others">Others</option>
+                            <?php endif; else:?>
                               <option value="Female">Female</option>
                               <option value="Male">Male</option>
                               <option value="Others">Others</option>
@@ -490,7 +494,12 @@
                                 <option value="Married">Married</option>
                                 <option value="Separated">Separated</option>
                                 <option value="Widowed">Widowed</option>
-                              <?php endif; endif;?>
+                              <?php endif; else:?>
+                                <option value="Single">Single</option>
+                                <option value="Married">Married</option>
+                                <option value="Separated">Separated</option>
+                                <option value="Widowed">Widowed</option>
+                              <?php endif; ?>
                             </select>
                           </div>
 
@@ -581,31 +590,6 @@
                       </form>
                     </div>
                     <!-- /Account -->
-                  </div>
-                  <div class="card">
-                    <h5 class="card-header">Delete Account</h5>
-                    <div class="card-body">
-                      <div class="mb-3 col-12 mb-0">
-                        <div class="alert alert-warning">
-                          <h6 class="alert-heading fw-bold mb-1">Are you sure you want to delete your account?</h6>
-                          <p class="mb-0">Once you delete your account, there is no going back. Please be certain.</p>
-                        </div>
-                      </div>
-                      <form id="formAccountDeactivation" onsubmit="return false">
-                        <div class="form-check mb-3">
-                          <input
-                            class="form-check-input"
-                            type="checkbox"
-                            name="accountActivation"
-                            id="accountActivation"
-                          />
-                          <label class="form-check-label" for="accountActivation"
-                            >I confirm my account deactivation</label
-                          >
-                        </div>
-                        <button type="submit" class="btn btn-danger deactivate-account">Deactivate Account</button>
-                      </form>
-                    </div>
                   </div>
                 </div>
               </div>

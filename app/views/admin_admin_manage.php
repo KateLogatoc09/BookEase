@@ -360,7 +360,7 @@
             <!-- Content -->
 
             <div class="container-xxl flex-grow-1 container-p-y">
-              <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Tourists /</span> Manage</h4>
+              <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Admin /</span> Manage</h4>
 
               <div class="card col-md-12">
                 <div class="table-responsive text-nowrap rounded-3 overflow-y-scroll h-px-500 invisible-scrollbar">

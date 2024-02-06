@@ -513,6 +513,7 @@
                                     step="0.01"
                                     id="ac_price"
                                     value=""
+                                    name="ac_price"
                                     readonly
                                     autofocus
                                     />
